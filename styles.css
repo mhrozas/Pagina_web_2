@@ -549,16 +549,16 @@ body {
     color: #333;
 }
 
-/* Layout a dos columnas (Izquierda: Productos, Derecha: Resumen) */
+
 .cart-layout {
     display: flex;
     gap: 3rem;
     align-items: flex-start;
 }
 
-/* --- COLUMNA IZQUIERDA: LISTA DE PRODUCTOS --- */
+
 .cart-items-section {
-    flex: 2; /* Ocupa más espacio que el resumen */
+    flex: 2;
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
@@ -581,7 +581,7 @@ body {
 }
 
 .item-info {
-    flex: 1; /* Ocupa el espacio disponible en medio */
+    flex: 1;
 }
 
 .item-info h4 {
@@ -607,10 +607,10 @@ body {
 .item-price {
     font-size: 1.2rem;
     font-weight: bold;
-    color: #0056b3; /* Azul para resaltar el precio */
+    color: #0056b3;
 }
 
-/* Controles de Cantidad (+ / -) */
+
 .qty-controls {
     display: flex;
     align-items: center;
@@ -643,7 +643,7 @@ body {
     outline: none;
 }
 
-/* --- COLUMNA DERECHA: RESUMEN DE COMPRA --- */
+
 .cart-summary-box {
     flex: 1;
     background-color: #f9f9f9;
@@ -670,7 +670,6 @@ body {
     color: #0056b3;
 }
 
-/* Sección del cupón */
 .coupon-section {
     margin-bottom: 2rem;
 }
@@ -710,7 +709,7 @@ body {
     background-color: #555;
 }
 
-/* Botón de Pagar */
+
 .btn-pay {
     width: 100%;
     background-color: #0056b3;
@@ -728,7 +727,6 @@ body {
     background-color: #004494;
 }
 
-/* --- DISEÑO RESPONSIVO (Para celulares) --- */
 @media (max-width: 768px) {
     .cart-layout {
         flex-direction: column;
@@ -751,3 +749,97 @@ body {
         align-items: center;
     }
 }
+
+.registration-container {
+    max-width: 600px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+.form-box {
+    background-color: #ffffff;
+    padding: 35px 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    border: 1px solid #eaeaea;
+}
+
+.form-box h2 {
+    text-align: center;
+    font-size: 22px;
+    color: #1a1a1a;
+    margin-bottom: 25px;
+    font-weight: 700;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    font-size: 11px;
+    font-weight: 700;
+    color: #555555;
+    margin-bottom: 6px;
+    letter-spacing: 0.5px;
+}
+
+.form-group input,
+.form-group select {
+    padding: 10px 14px;
+    border: 1px solid #cccccc;
+    border-radius: 6px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    background-color: #fafafa;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #0066cc;
+    background-color: #ffffff;
+    box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.15);
+}
+
+.form-row {
+    display: flex;
+    gap: 15px;
+}
+
+.half-width {
+    flex: 1;
+}
+
+.btn-register {
+    width: 100%;
+    background-color: #0066cc;
+    color: white;
+    border: none;
+    padding: 12px;
+    font-size: 15px;
+    font-weight: 700;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.2s;
+}
+
+.btn-register:hover {
+    background-color: #004c99;
+}
+
+
+@media (max-width: 600px) {
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+    
+    .form-box {
+        padding: 25px 20px;
+    }
+}
+
