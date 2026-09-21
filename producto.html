@@ -1,116 +1,111 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Ch.Store</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-<main class="product-page">
-    
-  
-    <div class="breadcrumbs">
-        <a href="index.html">Home</a> &gt; <a href="#">Category X</a> &gt; <span>Product Title</span>
-    </div>
-<header class="header">
-    <div class="logo">
-        <span class="square-icon">■</span> Site Name
-    </div>
-    
-    <nav class="nav-links">
-        <a href="index.html">Home</a> | 
-        <a href="#">Productos</a> | 
-        <a href="#">Nosotros</a> | 
-        <a href="#">Blogs</a> | 
-        <a href="#">Contacto</a>
-    </nav>
-    
-  
-<div class="cart-wrapper">
-    
-  
-    <a href="carrito.html" class="cart">
-        🛒 Cart (0)
-    </a>
-
-    
-    <div class="mini-cart">
-        <h4>Tu Carrito</h4>
+<body> 
+    <main class="product-page">
         
-        <div class="mini-cart-items">
-         
-            <div class="mini-item">
-                <p>Producto de ejemplo</p>
-                <span>$ 8.000</span>
-            </div>
-        </div>
-        
-        <div class="mini-cart-footer">
-            <a href="carrito.html" class="btn-primary" style="width: 100%; text-align: center; display: block; font-size: 12px; padding: 8px;">Ir a pagar</a>
-        </div>
-    </div>
-
-</div>
-</header>
-
-<div class="auth-links">
-    <a href="#">Iniciar sesión</a> | 
-    <a href="registro.html">Registrar usuario</a>
-</div>
-  
-    <div class="product-main">
-        
-        <!-- Columna Izquierda: Galería de fotos -->
-        <div class="product-gallery">
-            <div class="main-image">
-           
-            </div>
-            <div class="thumbnails">
-                <div class="thumb active"></div>
-                <div class="thumb"></div>
-                <div class="thumb"></div>
-            </div>
+        <div class="breadcrumbs">
+            <a href="index.html">Home</a> &gt; <a href="#">Category X</a> &gt; <span>Product Title</span>
         </div>
 
-        <div class="product-info-detail">
-            <div class="product-title-price">
-                <h1>Nombre Producto</h1>
-                <span class="price">$100</span>
+        <header class="header">
+            <div class="logo">
+                <span class="square-icon">■</span> Ch.Store
             </div>
             
-            <p class="description">
-                Las manzanas son una fruta deliciosa y versátil, apreciada en todo el mundo por su sabor refrescante y sus numerosos beneficios para la salud. Disponibles en una variedad de colores, desde el rojo vibrante hasta el verde brillante y el amarillo dorado, las manzanas son una opción perfecta para cualquier ocasión, ya sea como un refrigerio saludable.
-            </p>
-
-            <div class="add-to-cart-section">
-                <label for="cantidad">Cantidad</label>
-                <select id="cantidad" name="cantidad">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                </select>
+            <nav class="nav-links">
+                <a href="index.html">Home</a> | 
+                <a href="#">Productos</a> | 
+                <a href="#">Nosotros</a> | 
+                <a href="#">Blogs</a> | 
+                <a href="#">Contacto</a>
+            </nav>
+            
+            <div class="cart-wrapper">
+                <a href="carrito.html" class="cart">
+                    🛒 Cart (0)
+                </a>
+                
+                <div class="mini-cart">
+                    <div class="mini-cart-items">
+                    </div>
+                    
+                    <div class="mini-cart-footer">
+                        <a href="carrito.html" class="btn-primary" style="width: 100%; text-align: center; display: block; font-size: 12px; padding: 8px;">Ir a pagar</a>
+                    </div>
+                </div>
             </div>
+        </header>
+        
+        <div class="product-main">
+            
+       
+            <div class="product-gallery">
+                <div class="main-image">
+                
+                    <img id="imagen-principal" src="https://froens.cl/cdn/shop/files/VESTIDOTROPICNEGRO_2.webp?v=1768960021&width=1067" alt="Producto" style="width: 100%; height: auto; object-fit: cover;">
+                </div>
+                <div class="thumbnails">
+                 
+                    <div class="thumb active" onclick="cambiarImagen('https://froens.cl/cdn/shop/files/VESTIDOTROPICNEGRO_4.webp?v=1762782558&width=1066', this)">
+                        <img src="https://froens.cl/cdn/shop/files/VESTIDOTROPICNEGRO_4.webp?v=1762782558&width=1066" alt="Miniatura 1" style="width: 100%; height: 100%; object-fit: cover; cursor: pointer;">
+                    </div>
+                   
+                    <div class="thumb" onclick="cambiarImagen('https://froens.cl/cdn/shop/files/VESTIDOTROPICNEGRO_3.webp?v=1762782558&width=1067', this)">
+                        <img src="https://froens.cl/cdn/shop/files/VESTIDOTROPICNEGRO_3.webp?v=1762782558&width=1067" alt="Miniatura 2" style="width: 100%; height: 100%; object-fit: cover; cursor: pointer;">
+                    </div>
+                
+                    <div class="thumb" onclick="cambiarImagen('https://froens.cl/cdn/shop/files/vestidolargonegrofroens_11zon.webp?v=1762782550&width=800', this)">
+                        <img src="https://froens.cl/cdn/shop/files/vestidolargonegrofroens_11zon.webp?v=1762782550&width=800" alt="Miniatura 3" style="width: 100%; height: 100%; object-fit: cover; cursor: pointer;">
+                    </div>
+                </div>
+            </div>
+    
 
-            <button class="btn-add-cart">Añadir al carrito</button>
+            <div class="product-info-detail">
+                <div class="product-title-price">
+                    <h1>Vestido largo tropic negro</h1>
+                    <span class="price">$20.000</span>
+                </div>
+                
+                <p class="description">
+                    Vestido largo con escote regulable y panal de abeja en la espalda. Su calce permite que sea un vestido cómodo y perfecto para los días cálidos.
+
+Disponible en colores neutros y versátiles para cada salida de verano.
+                </p>
+
+                <div class="add-to-cart-section">
+                    <label for="cantidad">Cantidad</label>
+                    <select id="cantidad" name="cantidad">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+                </div>
+
+                <button class="btn-add-cart">Añadir al carrito</button>
+            </div>
         </div>
-    </div>
+
+        <div class="related-products">
+            <h3>Productos relacionados</h3>
+            <div class="related-grid">
+                <div class="related-item"></div>
+                <div class="related-item"></div>
+                <div class="related-item"></div>
+                <div class="related-item"></div>
+                <div class="related-item"></div>
+            </div>
+        </div>
+        
+    </main>
 
   
-    <div class="related-products">
-        <h3>Related Products</h3>
-        <div class="related-grid">
-       
-            <div class="related-item"></div>
-            <div class="related-item"></div>
-            <div class="related-item"></div>
-            <div class="related-item"></div>
-            <div class="related-item"></div>
-        </div>
-    </div>
-    
-</main>
-<body>
-
     <script src="script.js"></script>
 </body>
 </html>

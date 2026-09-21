@@ -536,3 +536,218 @@ body {
     border: 1px solid #000;
     aspect-ratio: 16/9;
 }
+.cart-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    font-family: Arial, sans-serif;
+}
+
+.cart-page h2 {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    color: #333;
+}
+
+/* Layout a dos columnas (Izquierda: Productos, Derecha: Resumen) */
+.cart-layout {
+    display: flex;
+    gap: 3rem;
+    align-items: flex-start;
+}
+
+/* --- COLUMNA IZQUIERDA: LISTA DE PRODUCTOS --- */
+.cart-items-section {
+    flex: 2; /* Ocupa más espacio que el resumen */
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #e0e0e0;
+    gap: 1.5rem;
+}
+
+.item-img-placeholder {
+    width: 100px;
+    height: 100px;
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    flex-shrink: 0;
+}
+
+.item-info {
+    flex: 1; /* Ocupa el espacio disponible en medio */
+}
+
+.item-info h4 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.item-info p {
+    margin: 0;
+    color: #777;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.item-price-qty {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 1rem;
+}
+
+.item-price {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #0056b3; /* Azul para resaltar el precio */
+}
+
+/* Controles de Cantidad (+ / -) */
+.qty-controls {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.btn-qty {
+    background-color: #f9f9f9;
+    border: none;
+    padding: 0.5rem 0.8rem;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-qty:hover {
+    background-color: #e0e0e0;
+}
+
+.qty-controls input {
+    width: 40px;
+    text-align: center;
+    border: none;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    font-size: 1rem;
+    padding: 0.5rem 0;
+    outline: none;
+}
+
+/* --- COLUMNA DERECHA: RESUMEN DE COMPRA --- */
+.cart-summary-box {
+    flex: 1;
+    background-color: #f9f9f9;
+    padding: 2rem;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    font-size: 1.4rem;
+}
+
+.summary-label {
+    font-weight: normal;
+    color: #555;
+}
+
+.summary-total {
+    font-weight: bold;
+    color: #0056b3;
+}
+
+/* Sección del cupón */
+.coupon-section {
+    margin-bottom: 2rem;
+}
+
+.coupon-section label {
+    display: block;
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: 0.5rem;
+}
+
+.coupon-input-group {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.coupon-input-group input {
+    flex: 1;
+    padding: 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+}
+
+.btn-apply {
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 0 1.2rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.2s;
+}
+
+.btn-apply:hover {
+    background-color: #555;
+}
+
+/* Botón de Pagar */
+.btn-pay {
+    width: 100%;
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    padding: 1rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-pay:hover {
+    background-color: #004494;
+}
+
+/* --- DISEÑO RESPONSIVO (Para celulares) --- */
+@media (max-width: 768px) {
+    .cart-layout {
+        flex-direction: column;
+    }
+    
+    .cart-summary-box {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .cart-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .item-price-qty {
+        flex-direction: row;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+    }
+}

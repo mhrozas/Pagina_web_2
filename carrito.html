@@ -1,92 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Carrito de Compras - Ch.Store</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-<main class="cart-page">
-    <h2>Mi carrito de compras</h2>
-    
-    <div class="cart-layout">
-        
-    
-        <div class="cart-items-section">
-            
-         
-            <div class="cart-item">
-                <div class="item-img-placeholder"></div>
-                <div class="item-info">
-                    <h4>Producto #1</h4>
-                    <p>Pink lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
-                </div>
-                <div class="item-price-qty">
-                    <span class="item-price">$ 8.000</span>
-                    <div class="qty-controls">
-                        <button class="btn-qty">-</button>
-                        <input type="text" value="1" readonly>
-                        <button class="btn-qty">+</button>
-                    </div>
-                </div>
-            </div>
-
-        
-            <div class="cart-item">
-                <div class="item-img-placeholder"></div>
-                <div class="item-info">
-                    <h4>Producto #2</h4>
-                    <p>Pink lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
-                </div>
-                <div class="item-price-qty">
-                    <span class="item-price">$ 6.000</span>
-                    <div class="qty-controls">
-                        <button class="btn-qty">-</button>
-                        <input type="text" value="1" readonly>
-                        <button class="btn-qty">+</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="cart-item">
-                <div class="item-img-placeholder"></div>
-                <div class="item-info">
-                    <h4>Producto #3</h4>
-                    <p>Pink lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
-                </div>
-                <div class="item-price-qty">
-                    <span class="item-price">$ 10.000</span>
-                    <div class="qty-controls">
-                        <button class="btn-qty">-</button>
-                        <input type="text" value="1" readonly>
-                        <button class="btn-qty">+</button>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-       
-        <div class="cart-summary-box">
-            <div class="summary-row">
-                <span class="summary-label">TOTAL:</span>
-                <span class="summary-total">$ 24.000</span>
-            </div>
-            
-            <div class="coupon-section">
-                <label>Ingrese el cupón de descuento</label>
-                <div class="coupon-input-group">
-                    <input type="text">
-                    <button class="btn-apply">APLICAR</button>
-                </div>
-            </div>
-            
-            <button class="btn-pay">PAGAR</button>
-        </div>
-        
-    </div>
-</main>
 <body>
+
+    <div class="site-wrapper">
+        <header class="header">
+            <div class="logo">■ Ch.Store</div>
+            <nav class="nav-links">
+                <a href="index.html">Home</a> |
+                <a href="index.html">Productos</a> |
+                <a href="#">Nosotros</a> |
+                <a href="blogs.html">Blogs</a> |
+                <a href="#">Contacto</a>
+            </nav>
+        </header>
+
+        <main class="cart-page">
+            <h2>Mi carrito de compras</h2>
+            
+            <div class="cart-layout">
+                <!-- Contenedor dinámico de productos -->
+                <div class="cart-items-section">
+                    <!-- JavaScript renderizará los productos aquí -->
+                </div>
+
+                <!-- Resumen de compra -->
+                <div class="cart-summary-box">
+                    <div class="summary-row">
+                        <span class="summary-label">TOTAL:</span>
+                        <span class="summary-total">$ 0</span>
+                    </div>
+                    
+                    <div class="coupon-section">
+                        <label>Ingrese el cupón de descuento</label>
+                        <div class="coupon-input-group">
+                            <input type="text" placeholder="CÓDIGO">
+                            <button class="btn-apply">APLICAR</button>
+                        </div>
+                    </div>
+                    
+                    <button class="btn-pay">PAGAR</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
