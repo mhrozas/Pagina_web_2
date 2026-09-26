@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ch.Store</title>
-
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -24,9 +23,10 @@
                 🛒 Cart (0)
             </div>
         </header>
+
         <div class="auth-links">
-            <a href="registro.html">Iniciar sesión</a> | <a href="registro.html">Registrar usuario</a>
-            
+            <!-- Cambiamos el href y agregamos el ID para abrir el modal -->
+            <a href="#" id="open-login-btn">Iniciar sesión</a> | <a href="registro.html">Registrar usuario</a>
         </div>
 
         <main>
@@ -37,16 +37,13 @@
                     <button class="btn-primary">⬇ ver productos</button>
                 </div>
                 <div class="hero-image-placeholder">
-                 
                     <img src="https://placehold.co/600x400/white/black?text=Imagen+Banner" alt="Banner principal">
                 </div>
             </section>
 
-           
             <section class="products-grid">
-              
+                <!-- Tarjeta 1 -->
                 <a href="producto.html" class="product-card">
-                   
                     <img src="https://froens.cl/cdn/shop/files/VESTIDOTROPICNEGRO_2.webp?v=1768960021&width=1067" alt="Producto 1">
                     <div class="product-info">
                         <h3 class="product-title">Vestido Largo Negro</h3>
@@ -57,7 +54,7 @@
                     </div>
                 </a>
 
-               
+                <!-- Tarjeta 2 -->
                 <a href="producto.html" class="product-card">
                     <img src="https://froens.cl/cdn/shop/files/blazer-alondra-mujer-beige-lifestyle-froens-1_d1653926-de0c-4259-9101-dafda13822c6.webp?v=1784055114&width=1282" alt="Producto 2">
                     <div class="product-info">
@@ -69,7 +66,7 @@
                     </div>
                 </a>
 
-                
+                <!-- Tarjeta 3 -->
                 <a href="producto.html" class="product-card">
                     <img src="https://tse1.explicit.bing.net/th/id/OIP.UgaNNgEDOJQRGU8mTrkkGgHaJ3?r=0&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Producto 3">
                     <div class="product-info">
@@ -81,7 +78,7 @@
                     </div>
                 </a>
 
-               
+                <!-- Tarjeta 4 -->
                 <a href="producto.html" class="product-card">
                     <img src="https://ae-pic-a1.aliexpress-media.com/kf/S510b4a7386c74e02bb34b58bffead5abx.jpg_960x960q75.jpg_.avif" alt="Producto 4">
                     <div class="product-info">
@@ -93,6 +90,7 @@
                     </div>
                 </a>
 
+                <!-- Tarjeta 5 -->
                 <a href="producto.html" class="product-card">
                     <img src="https://media.falabella.com/falabellaCL/137969943_01/w=1200,h=1200,fit=pad" alt="Producto 5">
                     <div class="product-info">
@@ -104,6 +102,7 @@
                     </div>
                 </a>
 
+                <!-- Tarjeta 6 -->
                 <a href="producto.html" class="product-card">
                     <img src="https://img.kwcdn.com/product/fancy/41f18390-702a-4991-b607-3ab553f18b10.jpg?imageView2/2/w/500/q/70/format/webp" alt="Producto 6">
                     <div class="product-info">
@@ -115,7 +114,7 @@
                     </div>
                 </a>
 
-               
+                <!-- Tarjeta 7 -->
                 <a href="producto.html" class="product-card">
                     <img src="https://i.pinimg.com/736x/d5/13/3a/d5133aa9949232987509869ebd71b362.jpg" alt="Producto 7">
                     <div class="product-info">
@@ -127,7 +126,7 @@
                     </div>
                 </a>
 
-       
+                <!-- Tarjeta 8 -->
                 <a href="producto.html" class="product-card">
                     <img src="https://tse4.mm.bing.net/th/id/OIP.nG-0Yu1sTwwvLqvUFPKDRwHaIY?r=0&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Producto 8">
                     <div class="product-info">
@@ -157,12 +156,45 @@
                 </form>
             </div>
         </footer>
-
     </div>
 
-<script src="script.js"></script>
-</body>
-</html>
+    <!-- INICIO DE SESIÓN -->
+
+    <div id="login-modal" class="modal">
+        <div class="modal-content mockup-style">
+            <span class="close-btn">&times;</span>
+            
+            
+            <h2 class="modal-main-title">Inicio de sesión</h2>
+            
+            <div class="company-brand">
+              
+                <img src="img/logo3.png" alt="Logo de mi empresa" class="logo-real">
+            </div>
+
+            <div class="login-container">
+                
+                <div class="login-header-empty"></div>
+                
+                <form class="login-form" action="#" method="POST">
+                    <div class="input-group">
+                        <label for="correo">CORREO</label>
+                        <input type="email" id="correo" name="correo" required>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="contrasena">CONTRASEÑA</label>
+                        <input type="password" id="contrasena" name="contrasena" required>
+                    </div>
+                    
+                    <div class="submit-group">
+                        <button type="submit">Iniciar sesión</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>

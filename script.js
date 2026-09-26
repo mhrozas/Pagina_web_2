@@ -189,3 +189,25 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+// Obtener los elementos del DOM
+const modal = document.getElementById("login-modal");
+const btnAbrir = document.getElementById("open-login-btn");
+const btnCerrar = document.querySelector(".close-btn");
+
+// Cuando el usuario hace clic en "Iniciar sesión", se muestra el modal
+btnAbrir.addEventListener("click", function(event) {
+    event.preventDefault(); // Evita que la página salte hacia arriba
+    modal.style.display = "flex";
+});
+
+// Cuando el usuario hace clic en la 'X', se oculta el modal
+btnCerrar.addEventListener("click", function() {
+    modal.style.display = "none";
+});
+
+// Cuando el usuario hace clic fuera del contenido del modal, también se cierra
+window.addEventListener("click", function(event) {
+    if (event.target === modal) {
+        modal.style.display = "none";
+    }
+});
