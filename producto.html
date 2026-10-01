@@ -3,107 +3,150 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ch.Store</title>
+    <title>Vestido Largo Negro - Ch.Store</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body> 
-    <main class="product-page">
-        
-        <div class="breadcrumbs">
-            <a href="index.html">Home</a> &gt; <a href="#">Category X</a> &gt; <span>Product Title</span>
-        </div>
+<body>
 
-        <header class="header">
-            <div class="logo">
-                <span class="square-icon">■</span> Ch.Store
-            </div>
+    <div class="site-wrapper">
+        <div class="container-limits">
             
-            <nav class="nav-links">
-                <a href="index.html">Home</a> | 
-                <a href="#">Productos</a> | 
-                <a href="#">Nosotros</a> | 
-                <a href="#">Blogs</a> | 
-                <a href="#">Contacto</a>
-            </nav>
             
-            <div class="cart-wrapper">
-                <a href="carrito.html" class="cart">
-                    🛒 Cart (0)
+            <header class="header">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="img/logo3.png" alt="Logo Ch.Store" class="header-logo">
+                    </a>
+                </div>
+                <nav class="nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="#">Productos</a>
+                    <a href="#">Nosotros</a>
+                    <a href="blogs.html">Blogs</a>
+                    <a href="#">Contacto</a>
+                </nav>
+                <a href="carrito.html" class="cart-button">
+                    <svg class="cart-icon-svg" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="9" cy="21" r="1"></circle>
+                        <circle cx="20" cy="21" r="1"></circle>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                    </svg>
+                    <span>Carrito</span>
+                    <span class="cart-badge" id="cart-counter">0</span>
                 </a>
-                
-                <div class="mini-cart">
-                    <div class="mini-cart-items">
-                    </div>
-                    
-                 
-                </div>
+            </header>
+
+           
+            <div class="breadcrumb">
+                <a href="index.html">Home</a> > <a href="#">Mujer</a> > Vestido Largo Negro
             </div>
-        </header>
-        
-        <div class="product-main">
-            
-       
-            <div class="product-gallery">
-                <div class="main-image">
+
+            <!-- CONTENEDOR PRINCIPAL DEL PRODUCTO -->
+            <main class="product-detail-container">
                 
-                    <img id="imagen-principal" src="https://froens.cl/cdn/shop/files/VESTIDOTROPICNEGRO_2.webp?v=1768960021&width=1067" alt="Producto" style="width: 100%; height: auto; object-fit: cover;">
-                </div>
-                <div class="thumbnails">
-                 
-                    <div class="thumb active" onclick="cambiarImagen('https://froens.cl/cdn/shop/files/VESTIDOTROPICNEGRO_4.webp?v=1762782558&width=1066', this)">
-                        <img src="https://froens.cl/cdn/shop/files/VESTIDOTROPICNEGRO_4.webp?v=1762782558&width=1066" alt="Miniatura 1" style="width: 100%; height: 100%; object-fit: cover; cursor: pointer;">
-                    </div>
-                   
-                    <div class="thumb" onclick="cambiarImagen('https://froens.cl/cdn/shop/files/VESTIDOTROPICNEGRO_3.webp?v=1762782558&width=1067', this)">
-                        <img src="https://froens.cl/cdn/shop/files/VESTIDOTROPICNEGRO_3.webp?v=1762782558&width=1067" alt="Miniatura 2" style="width: 100%; height: 100%; object-fit: cover; cursor: pointer;">
-                    </div>
                 
-                    <div class="thumb" onclick="cambiarImagen('https://froens.cl/cdn/shop/files/vestidolargonegrofroens_11zon.webp?v=1762782550&width=800', this)">
-                        <img src="https://froens.cl/cdn/shop/files/vestidolargonegrofroens_11zon.webp?v=1762782550&width=800" alt="Miniatura 3" style="width: 100%; height: 100%; object-fit: cover; cursor: pointer;">
-                    </div>
-                </div>
-            </div>
+<div class="product-image-section">
     
+    <!-- Imagen Principal (La grande) -->
+    <img id="imagen-principal" src="https://froens.cl/cdn/shop/files/VESTIDOTROPICNEGRO_2.webp" alt="Vestido Largo Negro">
+    
+    <!-- Miniaturas (Las 3 de abajo) -->
+    <div class="product-thumbnails">
+        <!-- Foto 1 -->
+        <img src="https://froens.cl/cdn/shop/files/VESTIDOTROPICNEGRO_2.webp" alt="Vista 1" onclick="cambiarImagen(this.src)">
+        <!-- Foto 2 -->
+        <img src="https://froens.cl/cdn/shop/files/VESTIDOTROPICNEGRO_3.webp?v=1768960021&width=1067" alt="Vista 2" onclick="cambiarImagen(this.src)">
+        <!-- Foto 3 -->
+        <img src="https://froens.cl/cdn/shop/files/VESTIDOTROPICNEGRO_4.webp?v=1768960021&width=1067" alt="Vista 3" onclick="cambiarImagen(this.src)">
+    </div>
 
-            <div class="product-info-detail">
-                <div class="product-title-price">
-                    <h1>Vestido largo tropic negro</h1>
-                    <span class="price">$20.000</span>
+</div>
+
+                <!-- Columna Derecha: Información y Compra -->
+                <div class="product-info-section">
+                    <h1 class="product-title-large">Vestido Largo Negro</h1>
+                    <p class="product-price-large">$20.00</p>
+                    
+                    <p class="product-description">
+                        Vestido elegante ideal para salidas de noche. Fabricado con texturas únicas y capas ligeras para brindar la mayor comodidad, manteniendo una elegancia relajada.
+                    </p>
+
+                    <div class="product-options">
+                        <label for="talla">Talla:</label>
+                        <select id="talla" name="talla">
+                            <option value="">Selecciona una talla</option>
+                            <option value="s">S (Pequeña)</option>
+                            <option value="m">M (Mediana)</option>
+                            <option value="l">L (Grande)</option>
+                        </select>
+                    </div>
+
+                    <button class="btn-add-cart" id="btn-add-cart" onclick="agregarAlCarrito()">Añadir al carrito</button>
                 </div>
-                
-                <p class="description">
-                    Vestido largo con escote regulable y panal de abeja en la espalda. Su calce permite que sea un vestido cómodo y perfecto para los días cálidos.
+            </main>
 
-Disponible en colores neutros y versátiles para cada salida de verano.
-                </p>
-
-                <div class="add-to-cart-section">
-                    <label for="cantidad">Cantidad</label>
-                    <select id="cantidad" name="cantidad">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                    </select>
+            
+            <footer class="footer">
+                <div class="footer-left">
+                    <span class="footer-logo">Ch.Store</span>
+                    <a href="#">Términos</a> | <a href="#">Privacidad</a>
+                    <div class="payment-icons">
+                        <span>💳 VISA</span> <span>💳 MC</span>
+                    </div>
                 </div>
+                <div class="footer-right">
+                    <p>¡Únete a nuestro Newsletter!</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Tu correo electrónico" required>
+                        <button type="submit">Suscribir</button>
+                    </form>
+                </div>
+            </footer>
 
-                <button class="btn-add-cart">Añadir al carrito</button>
-            </div>
         </div>
+    </div>
+    <script>
+    
+    function cambiarImagen(ruta) {
+        document.getElementById('imagen-principal').src = ruta;
+    }
+</script>
+<script>
+    
+    function cambiarImagen(ruta) {
+        document.getElementById('imagen-principal').src = ruta;
+    }
 
-        <div class="related-products">
-            <h3>Productos relacionados</h3>
-            <div class="related-grid">
-                <div class="related-item"></div>
-                <div class="related-item"></div>
-                <div class="related-item"></div>
-                <div class="related-item"></div>
-                <div class="related-item"></div>
-            </div>
-        </div>
+    
+    let contadorCarrito = 0;
+
+    function agregarAlCarrito() {
+    
+        const tallaSelect = document.getElementById('talla');
+        if (tallaSelect.value === "") {
+            alert("Por favor, selecciona una talla antes de añadir el producto al carrito.");
+            return; 
+        }
+
+       
+        contadorCarrito++;
         
-    </main>
-
-  
-    <script src="script.js"></script>
+       
+        document.getElementById('cart-counter').innerText = contadorCarrito;
+        
+     
+        const btn = document.getElementById('btn-add-cart');
+        const textoOriginal = btn.innerText;
+        
+        btn.innerText = "¡Añadido con éxito!";
+        btn.style.backgroundColor = "#28a745"; 
+        
+       
+        setTimeout(() => {
+            btn.innerText = textoOriginal;
+            btn.style.backgroundColor = ""; 
+        }, 2000);
+    }
+</script>
 </body>
 </html>
