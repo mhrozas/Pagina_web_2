@@ -3,107 +3,96 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ch.Store</title>
+    <title>Detalle del producto - Ch.Store</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body> 
-    <main class="product-page">
-        
-        <div class="breadcrumbs">
-            <a href="index.html">Home</a> &gt; <a href="#">Category X</a> &gt; <span>Product Title</span>
-        </div>
+<body>
+
+    <div class="site-wrapper">
 
         <header class="header">
-            <div class="logo">
-                <span class="square-icon">■</span> Ch.Store
-            </div>
-            
+            <div class="logo">■ Ch.Store</div>
             <nav class="nav-links">
-                <a href="index.html">Home</a> | 
-                <a href="#">Productos</a> | 
-                <a href="#">Nosotros</a> | 
-                <a href="#">Blogs</a> | 
-                <a href="#">Contacto</a>
+                <a href="index.html">Home</a> |
+                <a href="productos.html">Productos</a> |
+                <a href="nosotros.html">Nosotros</a> |
+                <a href="blogs.html">Blogs</a> |
+                <a href="contacto.html">Contacto</a>
             </nav>
-            
-            <div class="cart-wrapper">
-                <a href="carrito.html" class="cart">
-                    🛒 Cart (0)
-                </a>
-                
-                <div class="mini-cart">
-                    <div class="mini-cart-items">
-                    </div>
-                    
-                 
-                </div>
-            </div>
+            <a href="carrito.html" class="cart">🛒 Cart (0)</a>
         </header>
-        
-        <div class="product-main">
-            
-       
-            <div class="product-gallery">
-                <div class="main-image">
-                
-                    <img id="imagen-principal" src="https://froens.cl/cdn/shop/files/VESTIDOTROPICNEGRO_2.webp?v=1768960021&width=1067" alt="Producto" style="width: 100%; height: auto; object-fit: cover;">
-                </div>
-                <div class="thumbnails">
-                 
-                    <div class="thumb active" onclick="cambiarImagen('https://froens.cl/cdn/shop/files/VESTIDOTROPICNEGRO_4.webp?v=1762782558&width=1066', this)">
-                        <img src="https://froens.cl/cdn/shop/files/VESTIDOTROPICNEGRO_4.webp?v=1762782558&width=1066" alt="Miniatura 1" style="width: 100%; height: 100%; object-fit: cover; cursor: pointer;">
+
+        <main class="product-page">
+
+            <nav class="breadcrumbs" aria-label="Ruta de navegación">
+                <a href="index.html">Home</a> &gt;
+                <a href="productos.html">Productos</a> &gt;
+                <span id="breadcrumb-producto">Producto</span>
+            </nav>
+
+            <div class="product-main">
+
+                <div class="product-gallery">
+                    <div class="main-image">
+                        <img id="imagen-principal" src="" alt="Imagen del producto">
                     </div>
-                   
-                    <div class="thumb" onclick="cambiarImagen('https://froens.cl/cdn/shop/files/VESTIDOTROPICNEGRO_3.webp?v=1762782558&width=1067', this)">
-                        <img src="https://froens.cl/cdn/shop/files/VESTIDOTROPICNEGRO_3.webp?v=1762782558&width=1067" alt="Miniatura 2" style="width: 100%; height: 100%; object-fit: cover; cursor: pointer;">
-                    </div>
-                
-                    <div class="thumb" onclick="cambiarImagen('https://froens.cl/cdn/shop/files/vestidolargonegrofroens_11zon.webp?v=1762782550&width=800', this)">
-                        <img src="https://froens.cl/cdn/shop/files/vestidolargonegrofroens_11zon.webp?v=1762782550&width=800" alt="Miniatura 3" style="width: 100%; height: 100%; object-fit: cover; cursor: pointer;">
+                    <div class="thumbnails" id="miniaturas">
+                        <!-- Las miniaturas se cargan desde js/app.js -->
                     </div>
                 </div>
-            </div>
-    
 
-            <div class="product-info-detail">
-                <div class="product-title-price">
-                    <h1>Vestido largo tropic negro</h1>
-                    <span class="price">$20.000</span>
+                <div class="product-info-detail">
+                    <div class="product-title-price">
+                        <h1 id="producto-nombre">Producto</h1>
+                        <span class="price" id="producto-precio">$0</span>
+                    </div>
+
+                    <p class="producto-codigo">Código: <span id="producto-codigo">—</span></p>
+                    <p class="producto-categoria" id="producto-categoria"></p>
+
+                    <p class="description" id="producto-descripcion"></p>
+
+                    <p class="producto-stock" id="producto-stock"></p>
+
+                    <div class="add-to-cart-section">
+                        <label for="cantidad">Cantidad</label>
+                        <select id="cantidad" name="cantidad">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </div>
+
+                    <button class="btn-add-cart" id="btn-add-cart">Añadir al carrito</button>
+                    <span class="mensaje-exito" id="exito-carrito"></span>
                 </div>
-                
-                <p class="description">
-                    Vestido largo con escote regulable y panal de abeja en la espalda. Su calce permite que sea un vestido cómodo y perfecto para los días cálidos.
+            </div>
 
-Disponible en colores neutros y versátiles para cada salida de verano.
-                </p>
-
-                <div class="add-to-cart-section">
-                    <label for="cantidad">Cantidad</label>
-                    <select id="cantidad" name="cantidad">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                    </select>
+            <div class="related-products">
+                <h3>Productos relacionados</h3>
+                <div class="products-grid" id="grid-relacionados">
+                    <!-- Los relacionados se cargan desde js/app.js -->
                 </div>
-
-                <button class="btn-add-cart">Añadir al carrito</button>
             </div>
-        </div>
 
-        <div class="related-products">
-            <h3>Productos relacionados</h3>
-            <div class="related-grid">
-                <div class="related-item"></div>
-                <div class="related-item"></div>
-                <div class="related-item"></div>
-                <div class="related-item"></div>
-                <div class="related-item"></div>
+        </main>
+
+        <footer class="footer">
+            <div class="footer-left">
+                <span class="footer-logo">Ch.Store</span>
+                <a href="productos.html">Productos</a> |
+                <a href="nosotros.html">Nosotros</a> |
+                <a href="contacto.html">Contacto</a>
             </div>
-        </div>
-        
-    </main>
+        </footer>
 
-  
-    <script src="script.js"></script>
+    </div>
+
+    <script src="js/productos.js"></script>
+    <script src="js/validaciones.js"></script>
+    <script src="js/carrito.js"></script>
+    <script src="js/app.js"></script>
 </body>
 </html>

@@ -1,51 +1,79 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Blogs - Ch.Store</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-<main class="blogs-page">
-    
-    <h2 class="section-title">NOTICIAS IMPORTANTES</h2>
-    
-    <div class="blogs-list">
-        
-       
-        <article class="blog-card">
-            <div class="blog-content">
-                <h3>CASO CURIOSO #1</h3>
-                <p>Our North American Field Guides provide tips for identifying birds in all of the regions of the United States and Canada. Download any of our guides for free now!</p>
-                
-                <select class="btn-ver-caso">
-                    <option>VER CASO</option>
-                </select>
-            </div>
-            <div class="blog-image">
-               
-            </div>
-        </article>
+<body>
 
-       
-        <article class="blog-card">
-            <div class="blog-content">
-                <h3>CASO CURIOSO #2</h3>
-                <p>Our North American Field Guides provide tips for identifying birds in all of the regions of the United States and Canada. Download any of our guides for free now!</p>
-                
-                <select class="btn-ver-caso">
-                    <option>VER CASO</option>
-                </select>
+    <div class="site-wrapper">
+
+        <header class="header">
+            <div class="logo">■ Ch.Store</div>
+            <nav class="nav-links">
+                <a href="index.html">Home</a> |
+                <a href="productos.html">Productos</a> |
+                <a href="nosotros.html">Nosotros</a> |
+                <a href="blogs.html" class="activo">Blogs</a> |
+                <a href="contacto.html">Contacto</a>
+            </nav>
+            <a href="carrito.html" class="cart">🛒 Cart (0)</a>
+        </header>
+
+        <div class="auth-links">
+            <a href="login.html">Iniciar sesión</a> |
+            <a href="registro.html">Registrar usuario</a>
+        </div>
+
+        <main class="blogs-page">
+            <nav class="breadcrumbs" aria-label="Ruta de navegación">
+                <a href="index.html">Home</a> &gt; <span>Blogs</span>
+            </nav>
+
+            <h2 class="section-title">NOTICIAS Y DATOS CURIOSOS</h2>
+
+            <div class="blogs-list">
+
+                <article class="blog-card">
+                    <div class="blog-content">
+                        <h3>Cómo elegir la talla correcta al comprar online</h3>
+                        <p>Comprar ropa por internet sin probársela genera dudas. Te explicamos cómo tomar tus medidas en casa y leer nuestra tabla de tallas para acertar a la primera.</p>
+                        <a href="blog-detalle-1.html" class="btn-ver-caso">VER ARTÍCULO</a>
+                    </div>
+                    <div class="blog-image">
+                        <img src="https://froens.cl/cdn/shop/files/blazer-alondra-mujer-beige-lifestyle-froens-1_d1653926-de0c-4259-9101-dafda13822c6.webp?v=1784055114&width=1282" alt="Modelo con conjunto beige mostrando el calce de la prenda">
+                    </div>
+                </article>
+
+                <article class="blog-card">
+                    <div class="blog-content">
+                        <h3>Cinco formas de cuidar tus prendas para que duren más</h3>
+                        <p>El lavado y el secado son los dos momentos donde más se dañan las prendas. Reunimos cinco recomendaciones simples que alargan la vida útil de tu ropa.</p>
+                        <a href="blog-detalle-2.html" class="btn-ver-caso">VER ARTÍCULO</a>
+                    </div>
+                    <div class="blog-image">
+                        <img src="https://froens.cl/cdn/shop/files/VESTIDOTROPICNEGRO_2.webp?v=1768960021&width=1067" alt="Vestido largo negro colgado">
+                    </div>
+                </article>
+
             </div>
-            <div class="blog-image">
-                
+        </main>
+
+        <footer class="footer">
+            <div class="footer-left">
+                <span class="footer-logo">Ch.Store</span>
+                <a href="productos.html">Productos</a> |
+                <a href="nosotros.html">Nosotros</a> |
+                <a href="contacto.html">Contacto</a>
             </div>
-        </article>
+        </footer>
 
     </div>
-    
-</main>
-<body>
-    
+
+    <script src="js/validaciones.js"></script>
+    <script src="js/carrito.js"></script>
+    <script src="js/app.js"></script>
 </body>
 </html>
