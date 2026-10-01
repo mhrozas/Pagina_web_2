@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar sesión - Ch.Store</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="site-wrapper">
+
+        <header class="header">
+            <div class="logo">■ Ch.Store</div>
+            <nav class="nav-links">
+                <a href="index.html">Home</a> |
+                <a href="productos.html">Productos</a> |
+                <a href="nosotros.html">Nosotros</a> |
+                <a href="blogs.html">Blogs</a> |
+                <a href="contacto.html">Contacto</a>
+            </nav>
+            <a href="carrito.html" class="cart">🛒 Cart (0)</a>
+        </header>
+
+        <main class="registration-container">
+            <div class="form-box form-box-angosto">
+
+                <div class="form-marca">
+                    <span class="form-marca-logo">■ Ch.Store</span>
+                    <p>Tienda online de ropa femenina</p>
+                </div>
+
+                <h2>Iniciar sesión</h2>
+
+                <form id="form-login" novalidate>
+
+                    <div class="form-group">
+                        <label for="correo">CORREO</label>
+                        <input type="email" id="correo" name="correo" maxlength="100" required>
+                        <span class="mensaje-error" id="error-correo"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">CONTRASEÑA</label>
+                        <input type="password" id="password" name="password" maxlength="10" required>
+                        <span class="mensaje-error" id="error-password"></span>
+                    </div>
+
+                    <button type="submit" class="btn-register">INGRESAR</button>
+
+                    <p class="form-pie">
+                        ¿No tienes cuenta? <a href="registro.html">Regístrate aquí</a>
+                    </p>
+                </form>
+
+                <div class="mensaje-exito" id="exito-login"></div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <div class="footer-left">
+                <span class="footer-logo">Ch.Store</span>
+                <a href="index.html">Home</a> |
+                <a href="contacto.html">Contacto</a>
+            </div>
+        </footer>
+
+    </div>
+
+    <script src="js/validaciones.js"></script>
+    <script src="js/carrito.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
