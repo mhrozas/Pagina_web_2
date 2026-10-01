@@ -285,52 +285,6 @@ body {
 }
 
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-}
-
-body {
-    background-color: #f4f7f6;
-    color: #333333;
-    padding: 40px 20px;
-}
-
-.site-wrapper {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 40px;
-    background-color: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-}
-
-
-.product-page {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 20px 40px;
-    background-color: #ffffff; 
-}
-
-
-.breadcrumbs {
-    font-size: 12px;
-    color: #0066cc;
-    margin-bottom: 25px;
-}
-
-.breadcrumbs a {
-    color: #0066cc;
-    text-decoration: underline;
-}
-
-.breadcrumbs span {
-    color: #333;
-}
-
 
 .product-main {
     display: flex;
@@ -843,3 +797,581 @@ body {
     }
 }
 
+
+
+/* ============================================================
+   COMPONENTES AGREGADOS EN LA ENTREGA 1
+   Mensajes de validación, vistas nuevas y estados de stock.
+   ============================================================ */
+
+/* ---------- Navegación: enlace de la página actual ---------- */
+.nav-links a.activo {
+    color: #0066cc;
+    font-weight: bold;
+    border-bottom: 2px solid #0066cc;
+    padding-bottom: 3px;
+}
+
+/* ---------- Títulos de sección ---------- */
+.section-title {
+    font-size: 24px;
+    font-weight: 800;
+    color: #111;
+    margin: 30px 0 25px 0;
+    letter-spacing: 1px;
+}
+
+
+/* ============================================================
+   MENSAJES DE VALIDACIÓN
+   ============================================================ */
+
+.mensaje-error {
+    display: none;
+    color: #c0392b;
+    font-size: 13px;
+    margin-top: 6px;
+}
+
+.mensaje-error.visible {
+    display: block;
+}
+
+.mensaje-error.mensaje-ok {
+    color: #1e8449;
+}
+
+.mensaje-exito {
+    display: none;
+    background-color: #e8f8f0;
+    border: 1px solid #1e8449;
+    color: #1e8449;
+    padding: 14px 18px;
+    border-radius: 8px;
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.mensaje-exito.visible {
+    display: block;
+}
+
+.campo-invalido {
+    border-color: #c0392b !important;
+    background-color: #fdf3f2;
+}
+
+.ayuda-campo {
+    display: block;
+    font-size: 12px;
+    color: #888;
+    margin-top: 5px;
+}
+
+.obligatorio {
+    color: #c0392b;
+}
+
+.contador-caracteres {
+    display: block;
+    text-align: right;
+    font-size: 12px;
+    color: #888;
+    margin-top: 4px;
+}
+
+.contador-caracteres.contador-limite {
+    color: #c0392b;
+    font-weight: bold;
+}
+
+.form-group textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #dcdcdc;
+    border-radius: 8px;
+    font-size: 14px;
+    resize: vertical;
+}
+
+.form-group textarea:focus {
+    outline: none;
+    border-color: #0066cc;
+    box-shadow: 0 0 0 3px rgba(0,102,204,0.1);
+}
+
+.form-marca {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.form-marca-logo {
+    font-size: 22px;
+    font-weight: bold;
+    color: #1a1a1a;
+}
+
+.form-marca p {
+    font-size: 13px;
+    color: #888;
+    margin-top: 5px;
+}
+
+.form-pie {
+    text-align: center;
+    font-size: 14px;
+    color: #666;
+    margin-top: 20px;
+}
+
+.form-pie a {
+    color: #0066cc;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.form-box-angosto {
+    max-width: 440px;
+}
+
+
+/* ============================================================
+   LISTADO DE PRODUCTOS: filtro y estados de stock
+   ============================================================ */
+
+.filtros-barra {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 25px;
+    padding: 15px 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+}
+
+.filtros-barra label {
+    font-size: 14px;
+    font-weight: bold;
+    color: #555;
+}
+
+.filtros-barra select {
+    padding: 8px 12px;
+    border: 1px solid #dcdcdc;
+    border-radius: 6px;
+    font-size: 14px;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+.product-card.agotado {
+    opacity: 0.6;
+}
+
+.etiqueta-agotado {
+    display: inline-block;
+    background-color: #c0392b;
+    color: #fff;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 3px 10px;
+    border-radius: 4px;
+    margin-top: 8px;
+}
+
+.sin-resultados {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 40px;
+    color: #888;
+}
+
+.producto-codigo,
+.producto-categoria {
+    font-size: 13px;
+    color: #888;
+    margin-bottom: 5px;
+}
+
+.producto-stock {
+    font-size: 14px;
+    font-weight: bold;
+    margin: 15px 0;
+}
+
+.stock-ok { color: #1e8449; }
+.stock-critico { color: #d68910; }
+.stock-agotado { color: #c0392b; }
+
+
+/* ============================================================
+   CARRITO: acciones adicionales
+   ============================================================ */
+
+.item-codigo,
+.item-unitario {
+    font-size: 12px;
+    color: #888;
+    margin-top: 3px;
+}
+
+.btn-eliminar {
+    background: none;
+    border: none;
+    color: #c0392b;
+    font-size: 12px;
+    cursor: pointer;
+    text-decoration: underline;
+    margin-top: 8px;
+    padding: 0;
+}
+
+.btn-qty:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.btn-vaciar {
+    width: 100%;
+    background: none;
+    border: 1px solid #c0392b;
+    color: #c0392b;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 12px;
+    transition: all 0.3s;
+}
+
+.btn-vaciar:hover {
+    background-color: #c0392b;
+    color: #fff;
+}
+
+.summary-row-descuento {
+    color: #1e8449;
+}
+
+.summary-row-total {
+    border-top: 2px solid #eaeaea;
+    padding-top: 15px;
+    margin-top: 10px;
+}
+
+.carrito-vacio {
+    text-align: center;
+    padding: 60px 30px;
+    color: #888;
+}
+
+.carrito-vacio p {
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+
+.compra-confirmada {
+    text-align: center;
+    padding: 50px 30px;
+    background-color: #e8f8f0;
+    border-radius: 12px;
+}
+
+.compra-confirmada h3 {
+    color: #1e8449;
+    font-size: 22px;
+    margin-bottom: 15px;
+}
+
+.compra-confirmada p {
+    color: #555;
+    margin-bottom: 10px;
+}
+
+
+/* ============================================================
+   PÁGINA CONTACTO
+   ============================================================ */
+
+.contacto-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 40px;
+    margin-bottom: 50px;
+}
+
+.contacto-info h3,
+.contacto-formulario h3 {
+    font-size: 18px;
+    color: #111;
+    margin-bottom: 15px;
+}
+
+.contacto-info p {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.lista-contacto {
+    list-style: none;
+}
+
+.lista-contacto li {
+    padding: 10px 0;
+    border-bottom: 1px solid #eaeaea;
+    font-size: 14px;
+    color: #555;
+}
+
+.contacto-formulario {
+    background-color: #f8f9fa;
+    padding: 30px;
+    border-radius: 12px;
+}
+
+
+/* ============================================================
+   PÁGINA NOSOTROS
+   ============================================================ */
+
+.nosotros-intro {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 40px;
+    margin-bottom: 50px;
+}
+
+.nosotros-texto h3 {
+    font-size: 18px;
+    color: #111;
+    margin: 25px 0 10px 0;
+}
+
+.nosotros-texto h3:first-child {
+    margin-top: 0;
+}
+
+.nosotros-texto p {
+    color: #666;
+    line-height: 1.7;
+    margin-bottom: 12px;
+}
+
+.nosotros-imagen img {
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.equipo {
+    margin-bottom: 50px;
+}
+
+.equipo h3 {
+    font-size: 18px;
+    color: #111;
+    margin-bottom: 10px;
+}
+
+.equipo > p {
+    color: #666;
+    margin-bottom: 25px;
+}
+
+.equipo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 25px;
+}
+
+.integrante {
+    background-color: #f8f9fa;
+    padding: 25px;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.integrante-avatar {
+    width: 64px;
+    height: 64px;
+    line-height: 64px;
+    margin: 0 auto 15px auto;
+    border-radius: 50%;
+    background-color: #0066cc;
+    color: #fff;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.integrante h4 {
+    font-size: 16px;
+    color: #111;
+    margin-bottom: 4px;
+}
+
+.integrante-rol {
+    font-size: 13px;
+    color: #0066cc;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.integrante p {
+    font-size: 13px;
+    color: #666;
+    line-height: 1.5;
+}
+
+
+/* ============================================================
+   DETALLE DE BLOG
+   ============================================================ */
+
+.blog-detalle {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px 0 50px 0;
+}
+
+.blog-detalle h1 {
+    font-size: 32px;
+    color: #111;
+    line-height: 1.3;
+    margin-bottom: 10px;
+}
+
+.blog-meta {
+    font-size: 13px;
+    color: #888;
+    margin-bottom: 25px;
+}
+
+.blog-detalle-imagen {
+    width: 100%;
+    border-radius: 12px;
+    margin-bottom: 30px;
+}
+
+.blog-detalle h2 {
+    font-size: 20px;
+    color: #111;
+    margin: 30px 0 12px 0;
+}
+
+.blog-detalle p {
+    color: #555;
+    line-height: 1.8;
+    margin-bottom: 15px;
+}
+
+.blog-detalle ul {
+    margin: 0 0 20px 25px;
+    color: #555;
+    line-height: 1.8;
+}
+
+.blog-card .blog-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+a.btn-ver-caso,
+a.btn-primary {
+    display: inline-block;
+    text-decoration: none;
+    text-align: center;
+}
+
+
+/* ============================================================
+   RESPONSIVO
+   ============================================================ */
+
+@media (max-width: 992px) {
+    .contacto-layout,
+    .nosotros-intro {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 20px 10px;
+    }
+
+    .site-wrapper {
+        padding: 0 20px;
+    }
+
+    .header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+
+    .nav-links a {
+        margin: 0 8px;
+        font-size: 14px;
+    }
+
+    .hero {
+        flex-direction: column;
+        padding: 30px 0;
+    }
+
+    .hero-content h1 {
+        font-size: 30px;
+    }
+
+    .product-main {
+        flex-direction: column;
+    }
+
+    .cart-layout {
+        flex-direction: column;
+    }
+
+    .cart-item {
+        flex-direction: column;
+        text-align: center;
+        gap: 12px;
+    }
+
+    .blog-card {
+        flex-direction: column;
+    }
+
+    .blog-detalle h1 {
+        font-size: 24px;
+    }
+
+    .footer {
+        flex-direction: column;
+        gap: 25px;
+        text-align: center;
+    }
+}
+
+@media (max-width: 600px) {
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .half-width {
+        width: 100%;
+    }
+
+    .products-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+
+    .filtros-barra {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
