@@ -139,11 +139,12 @@ function iniciarDetalleProducto() {
             const cantidad = selectCantidad ? parseInt(selectCantidad.value, 10) : 1;
             const resultado = agregarAlCarrito(producto.codigo, cantidad);
 
+            const aviso = document.getElementById('exito-carrito');
+            aviso.classList.toggle('aviso-error', !resultado.exito);
+            mostrarExito('exito-carrito', resultado.mensaje);
+
             if (resultado.exito) {
-                mostrarExito('exito-carrito', resultado.mensaje);
                 actualizarContadorCarrito();
-            } else {
-                mostrarExito('exito-carrito', resultado.mensaje);
             }
         });
     }
@@ -204,11 +205,15 @@ function iniciarCarrito() {
             const campo = document.getElementById('cupon');
             const resultado = aplicarCupon(campo.value);
 
+            const contenedorCupon = document.getElementById('error-cupon');
+
             if (resultado.exito) {
                 limpiarError('cupon');
                 actualizarResumen();
-                mostrarExito('error-cupon', resultado.mensaje);
+                contenedorCupon.textContent = resultado.mensaje;
+                contenedorCupon.classList.add('visible', 'mensaje-ok');
             } else {
+                contenedorCupon.classList.remove('mensaje-ok');
                 mostrarError('cupon', resultado.mensaje);
             }
         });

@@ -1375,3 +1375,9 @@ a.btn-primary {
         align-items: stretch;
     }
 }
+
+.mensaje-exito.aviso-error {
+    background-color: #fdedec;
+    border-color: #c0392b;
+    color: #c0392b;
+}
