@@ -1381,3 +1381,22 @@ a.btn-primary {
     border-color: #c0392b;
     color: #c0392b;
 }
+
+/* La imagen del banner se recorta para que el hero no se estire
+   cuando la foto de origen tiene proporción vertical. */
+.hero-image-placeholder img {
+    max-height: 420px;
+    object-fit: cover;
+}
+
+.hero-content {
+    align-self: center;
+}
+
+/* Las tarjetas de producto son enlaces: se quita el subrayado
+   que el navegador aplica por defecto a su contenido. */
+.product-card,
+.product-card:hover,
+.product-card * {
+    text-decoration: none;
+}
