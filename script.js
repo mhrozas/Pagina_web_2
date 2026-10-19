@@ -1,89 +1,44 @@
-const productosPorDefecto = [
-    {
-        titulo: "Producto #1",
-        precio: "$ 8.000",
-        cantidad: 1,
-        imagen: "https://placehold.co/100x100?text=Prod+1"
-    },
-    {
-        titulo: "Producto #2",
-        precio: "$ 6.000",
-        cantidad: 1,
-        imagen: "https://placehold.co/100x100?text=Prod+2"
-    },
-    {
-        titulo: "Producto #3",
-        precio: "$ 10.000",
-        cantidad: 1,
-        imagen: "https://placehold.co/100x100?text=Prod+3"
-    }
-];
+// ==========================================
+// 7. LÓGICA DE DESCUENTOS Y COMPRA
+// ==========================================
+let porcentajeDescuento = 0; // Variable global para guardar el descuento activo
 
-// Inicializar el carrito con los 3 productos de la pauta si no hay nada guardado
-function obtenerCarrito() {
-    let carritoGuardado = localStorage.getItem('carrito');
-    let carrito = carritoGuardado ? JSON.parse(carritoGuardado) : [];
-    
-    // Si el carrito está vacío Y no hemos forzado el inicio antes, cargamos la pauta
-    if (carrito.length === 0 && !localStorage.getItem('pauta_cargada')) {
-        localStorage.setItem('carrito', JSON.stringify(productosPorDefecto));
-        localStorage.setItem('pauta_cargada', 'true'); // Evita que se recarguen si los borras a mano
-        return JSON.parse(JSON.stringify(productosPorDefecto));
+function aplicarDescuento() {
+    const inputDescuento = document.getElementById('codigo-descuento');
+    if (!inputDescuento) return;
+
+    const codigo = inputDescuento.value.trim().toUpperCase();
+
+    // Puedes agregar los códigos que quieras aquí
+    if (codigo === 'DESCUENTO20') {
+        porcentajeDescuento = 0.20; // 20% de descuento
+        alert('¡Código aplicado! Se ha descontado un 20% al total.');
+    } else if (codigo === 'CHSTORE10') {
+        porcentajeDescuento = 0.10; // 10% de descuento
+        alert('¡Código aplicado! Se ha descontado un 10% al total.');
+    } else {
+        porcentajeDescuento = 0;
+        alert('Código inválido. Intenta nuevamente.');
     }
-    
-    return carrito;
+
+    // Volver a renderizar para que el total se actualice
+    renderizarCarrito(); 
 }
 
-// ==========================================
-// 2. ACTUALIZAR CONTADOR DE NAVEGACIÓN
-// ==========================================
-function actualizarContadorCarrito() {
-    const carrito = obtenerCarrito();
-    let totalItems = 0;
-    
-    carrito.forEach(producto => {
-        totalItems += (parseInt(producto.cantidad) || 0);
-    });
-    
-    const elementoCarrito = document.querySelector('.cart');
-    if (elementoCarrito) {
-        elementoCarrito.innerHTML = `🛒 Cart (${totalItems})`;
-    }
-}
-
-// ==========================================
-// 3. CAMBIAR CANTIDAD (+ / -)
-// ==========================================
-function cambiarCantidad(index, cambio) {
-    let carrito = obtenerCarrito();
-
-    if (carrito[index]) {
-        carrito[index].cantidad = (parseInt(carrito[index].cantidad) || 1) + cambio;
-
-        if (carrito[index].cantidad <= 0) {
-            carrito.splice(index, 1);
-        }
-
-        localStorage.setItem('carrito', JSON.stringify(carrito));
-        renderizarCarrito();
-    }
-}
-
-// ==========================================
-// 4. MOSTRAR PRODUCTOS EN CARRITO.HTML
-// ==========================================
+// Sobrescribir la función renderizarCarrito para incluir el descuento en el cálculo final
 function renderizarCarrito() {
-    const contenedor = document.querySelector('.cart-items-section');
-    const elementoTotal = document.querySelector('.summary-total');
-    
+    const contenedor = document.querySelector('.cart-items');
+    const subtotalEl = document.getElementById('subtotal-precio') || document.querySelector('.summary-row span:last-child'); // Ajuste por si usas clases
+    const totalEl = document.getElementById('total-precio') || document.querySelector('.total-row span:last-child');
+
     if (!contenedor) return;
 
     let carrito = obtenerCarrito();
 
     if (carrito.length === 0) {
-        contenedor.innerHTML = '<p style="padding: 30px; text-align: center; color: #666;">Tu carrito está vacío.</p>';
-        if (elementoTotal) elementoTotal.innerText = '$ 0';
-        actualizarContadorCarrito();
+        contenedor.innerHTML = '<p style="padding: 30px; text-align: center; color: #666; background: #fff; border-radius: 12px;">Tu carrito está vacío.</p>';
+        if (subtotalEl) subtotalEl.innerText = '$0.00';
+        if (totalEl) totalEl.innerText = '$0.00';
         return;
     }
 
@@ -92,122 +47,78 @@ function renderizarCarrito() {
 
     carrito.forEach((producto, index) => {
         let titulo = producto.titulo || 'Producto';
-        let imagen = producto.imagen || 'https://placehold.co/100x100?text=Imagen';
+        let imagen = producto.imagen || 'https://via.placeholder.com/100';
         let cantidad = parseInt(producto.cantidad) || 1;
+        let talla = producto.talla || 'Única';
         let precioStr = producto.precio ? String(producto.precio) : '$0';
         
-        let precioLimpio = parseInt(precioStr.replace(/[^0-9]/g, '')) || 0;
+        let precioLimpio = parseFloat(precioStr.replace(/[^0-9.]/g, '')) || 0;
         let subtotal = precioLimpio * cantidad;
         totalGeneral += subtotal;
 
         contenedor.innerHTML += `
             <div class="cart-item">
-                <img src="${imagen}" alt="${titulo}" class="item-img-placeholder" style="object-fit: cover;">
-                <div class="item-info">
-                    <h4>${titulo}</h4>
-                    <p>Pink lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+                <img src="${imagen}" alt="${titulo}">
+                <div class="cart-item-details">
+                    <h3>${titulo}</h3>
+                    <p class="item-size">Talla: ${talla}</p>
+                    <button class="btn-remove" onclick="eliminarProducto(${index})">Eliminar</button>
                 </div>
-                <div class="item-price-qty">
-                    <span class="item-price">$ ${subtotal.toLocaleString('es-CL')}</span>
-                    <div class="qty-controls">
-                        <button class="btn-qty" onclick="cambiarCantidad(${index}, -1)">-</button>
-                        <input type="text" value="${cantidad}" readonly>
-                        <button class="btn-qty" onclick="cambiarCantidad(${index}, 1)">+</button>
-                    </div>
+                <div class="cart-item-quantity">
+                    <input type="number" value="${cantidad}" min="1" onchange="cambiarCantidadInput(${index}, this.value)">
+                </div>
+                <div class="cart-item-price">
+                    $${subtotal.toFixed(2)}
                 </div>
             </div>
         `;
     });
 
-    if (elementoTotal) {
-        elementoTotal.innerText = `$ ${totalGeneral.toLocaleString('es-CL')}`;
-    }
-
-    actualizarContadorCarrito();
-}
-
-// ==========================================
-// 5. CAMBIAR IMAGEN EN PRODUCTO.HTML
-// ==========================================
-function cambiarImagen(rutaImagen, elementoMiniatura) {
-    const imagenPrincipal = document.getElementById('imagen-principal');
-    if (imagenPrincipal) {
-        imagenPrincipal.src = rutaImagen;
-    }
-
-    const miniaturas = document.querySelectorAll('.thumb');
-    miniaturas.forEach(miniatura => {
-        miniatura.classList.remove('active');
-    });
-
-    if (elementoMiniatura) {
-        elementoMiniatura.classList.add('active');
+    // Mostrar subtotal sin descuento
+    if (subtotalEl) subtotalEl.innerText = '$' + totalGeneral.toFixed(2);
+    
+    // Aplicar descuento al total
+    let totalConDescuento = totalGeneral - (totalGeneral * porcentajeDescuento);
+    
+    if (totalEl) {
+        if (porcentajeDescuento > 0) {
+            // Si hay descuento, mostramos el total anterior tachado y el nuevo
+            totalEl.innerHTML = `<span style="text-decoration: line-through; color: #999; font-size: 14px; margin-right: 10px;">$${totalGeneral.toFixed(2)}</span> $${totalConDescuento.toFixed(2)}`;
+        } else {
+            totalEl.innerText = '$' + totalConDescuento.toFixed(2);
+        }
     }
 }
 
-// ==========================================
-// 6. INICIALIZACIÓN DE EVENTOS
-// ==========================================
-document.addEventListener('DOMContentLoaded', () => {
+function procesarCompra() {
+    let carrito = obtenerCarrito();
+    
+    if (carrito.length === 0) {
+        alert('Tu carrito está vacío. Agrega productos antes de pagar.');
+        return;
+    }
+
+    // Generar código de envío aleatorio (Ej: CH-7X9P2)
+    const caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    let codigoEnvio = 'CH-';
+    for (let i = 0; i < 6; i++) {
+        codigoEnvio += caracteres.charAt(Math.floor(Math.random() * caracteres.length));
+    }
+
+    // Mensaje de éxito
+    alert(`¡Compra realizada con éxito!\n\nTu pedido está siendo procesado.\nGuarda tu código de envío: ${codigoEnvio}`);
+
+    // Vaciar el carrito en LocalStorage
+    localStorage.removeItem('carrito');
+    
+    // Resetear descuento
+    porcentajeDescuento = 0;
+    
+    // Limpiar input de código si existe
+    const inputDescuento = document.getElementById('codigo-descuento');
+    if(inputDescuento) inputDescuento.value = '';
+
+    // Actualizar la interfaz
     actualizarContadorCarrito();
     renderizarCarrito();
-    
-    const botonAgregar = document.querySelector('.btn-add-cart');
-    
-    if (botonAgregar) {
-        botonAgregar.addEventListener('click', () => {
-            const tituloEl = document.querySelector('.product-title-price h1');
-            const precioEl = document.querySelector('.product-title-price .price');
-            const cantidadEl = document.getElementById('cantidad');
-            const imagenEl = document.getElementById('imagen-principal');
-
-            const titulo = tituloEl ? tituloEl.innerText : 'Producto';
-            const precio = precioEl ? precioEl.innerText : '$0';
-            const cantidad = cantidadEl ? parseInt(cantidadEl.value) : 1;
-            const imagen = imagenEl ? imagenEl.src : '';
-
-            const productoNuevo = {
-                titulo: titulo,
-                precio: precio,
-                cantidad: cantidad,
-                imagen: imagen
-            };
-            
-            let carrito = obtenerCarrito();
-            const indexExistente = carrito.findIndex(item => item.titulo === productoNuevo.titulo);
-            
-            if (indexExistente !== -1) {
-                carrito[indexExistente].cantidad += productoNuevo.cantidad;
-            } else {
-                carrito.push(productoNuevo);
-            }
-            
-            localStorage.setItem('carrito', JSON.stringify(carrito));
-            actualizarContadorCarrito();
-            
-            alert('¡' + titulo + ' añadido al carrito!');
-        });
-    }
-});
-// Obtener los elementos del DOM
-const modal = document.getElementById("login-modal");
-const btnAbrir = document.getElementById("open-login-btn");
-const btnCerrar = document.querySelector(".close-btn");
-
-// Cuando el usuario hace clic en "Iniciar sesión", se muestra el modal
-btnAbrir.addEventListener("click", function(event) {
-    event.preventDefault(); // Evita que la página salte hacia arriba
-    modal.style.display = "flex";
-});
-
-// Cuando el usuario hace clic en la 'X', se oculta el modal
-btnCerrar.addEventListener("click", function() {
-    modal.style.display = "none";
-});
-
-// Cuando el usuario hace clic fuera del contenido del modal, también se cierra
-window.addEventListener("click", function(event) {
-    if (event.target === modal) {
-        modal.style.display = "none";
-    }
-});
+}

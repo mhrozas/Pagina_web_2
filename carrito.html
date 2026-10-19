@@ -20,10 +20,10 @@
                 </div>
                 <nav class="nav-links">
                     <a href="index.html">Home</a>
-                    <a href="#">Productos</a>
-                    <a href="#">Nosotros</a>
+                    <a href="index.html">Productos</a>
+                    <a href="nosotros.html">Nosotros</a>
                     <a href="blogs.html">Blogs</a>
-                    <a href="#">Contacto</a>
+                    <a href="contacto.html">Contacto</a>
                 </nav>
                 <a href="carrito.html" class="cart-button">
                     <svg class="cart-icon-svg" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -81,14 +81,14 @@
 
                         <!-- Sección de Cupón -->
                         <div class="coupon-section">
-                            <label>Ingrese el cupón de descuento</label>
+                            <label for="codigo-descuento">Ingrese el cupón de descuento</label>
                             <div class="coupon-input-group">
-                                <input type="text" placeholder="CÓDIGO">
-                                <button class="btn-apply">AplicAR</button>
+                                <input type="text" id="codigo-descuento" placeholder="CÓDIGO">
+                                <button class="btn-apply" onclick="aplicarDescuento()">Aplicar</button>
                             </div>
                         </div>
 
-                        <button class="btn-checkout">PAGAR</button>
+                        <button class="btn-checkout" onclick="procesarCompra()">PAGAR</button>
                     </div>
                 </div>
             </main>
@@ -98,9 +98,7 @@
                 <div class="footer-left">
                     <span class="footer-logo">Ch.Store</span>
                     <a href="#">Términos</a> | <a href="#">Privacidad</a>
-                    <div class="payment-icons">
-                        <span>💳 VISA</span> <span>💳 MC</span>
-                    </div>
+                    
                 </div>
                 <div class="footer-right">
                     <p>¡Únete a nuestro Newsletter!</p>
@@ -116,29 +114,78 @@
 
     <!-- SCRIPT DE FUNCIONALIDAD DEL CARRITO -->
     <script>
-        // Definimos el precio de este producto
         const precioUnitario = 20.00;
+        let porcentajeDescuento = 0;
 
-        // Función para multiplicar cantidad por precio
+        // Calcula subtotal y total según cantidad y cupón activo
         function actualizarTotal() {
             const inputCantidad = document.getElementById('cantidad-producto');
             let cantidad = parseInt(inputCantidad.value);
 
-            // Evitar que el usuario ponga números negativos o cero
             if (cantidad < 1 || isNaN(cantidad)) {
                 cantidad = 1;
                 inputCantidad.value = 1;
             }
 
-            // Calculamos el nuevo precio
-            const nuevoMonto = (precioUnitario * cantidad).toFixed(2);
+            const subtotal = precioUnitario * cantidad;
+            const totalConDescuento = subtotal - (subtotal * porcentajeDescuento);
 
-            // Actualizamos los textos en pantalla
-            document.getElementById('subtotal-precio').innerText = '$' + nuevoMonto;
-            document.getElementById('total-precio').innerText = '$' + nuevoMonto;
+            document.getElementById('subtotal-precio').innerText = '$' + subtotal.toFixed(2);
+            
+            if (porcentajeDescuento > 0) {
+                document.getElementById('total-precio').innerHTML = `<span style="text-decoration: line-through; color: #999; font-size: 14px; margin-right: 8px;">$${subtotal.toFixed(2)}</span>$${totalConDescuento.toFixed(2)}`;
+            } else {
+                document.getElementById('total-precio').innerText = '$' + totalConDescuento.toFixed(2);
+            }
         }
 
-        // Función extra para que el botón "Eliminar" funcione visualmente
+        // Aplica el cupón ingresado por el usuario
+        function aplicarDescuento() {
+            const inputDescuento = document.getElementById('codigo-descuento');
+            const codigo = inputDescuento.value.trim().toUpperCase();
+
+            if (codigo === 'DESCUENTO20') {
+                porcentajeDescuento = 0.20;
+                alert('¡Código de 20% de descuento aplicado con éxito!');
+            } else if (codigo === 'CHSTORE10') {
+                porcentajeDescuento = 0.10;
+                alert('¡Código de 10% de descuento aplicado con éxito!');
+            } else if (codigo === '') {
+                alert('Por favor, ingresa un código de descuento.');
+                return;
+            } else {
+                porcentajeDescuento = 0;
+                alert('Código inválido. Revisa el texto e intenta nuevamente.');
+            }
+
+            actualizarTotal();
+        }
+
+        // Procesa el pago, limpia la vista y genera un código de envío aleatorio
+        function procesarCompra() {
+            const fila = document.getElementById('fila-producto');
+            
+            if (fila.style.display === 'none') {
+                alert('Tu carrito está vacío. Agrega productos para realizar una compra.');
+                return;
+            }
+
+            // Generar código aleatorio de envío de 6 caracteres (Ej: CH-8A3X1Z)
+            const caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+            let codigoEnvio = 'CH-';
+            for (let i = 0; i < 6; i++) {
+                codigoEnvio += caracteres.charAt(Math.floor(Math.random() * caracteres.length));
+            }
+
+            alert(`¡Compra realizada con éxito!\\n\\nTu número de seguimiento de envío es: ${codigoEnvio}`);
+
+            // Limpiar el producto visualmente y reiniciar valores
+            eliminarProducto();
+            document.getElementById('codigo-descuento').value = '';
+            porcentajeDescuento = 0;
+        }
+
+        // Elimina el producto visualmente y resetea contadores
         function eliminarProducto() {
             document.getElementById('fila-producto').style.display = 'none';
             document.getElementById('subtotal-precio').innerText = '$0.00';
