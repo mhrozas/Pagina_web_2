@@ -4,72 +4,123 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cinco formas de cuidar tus prendas - Ch.Store</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <div class="barra-lectura" id="barra-lectura" aria-hidden="true"></div>
 
     <div class="site-wrapper">
+        <div class="container-limits">
 
-        <header class="header">
-            <div class="logo">■ Ch.Store</div>
-            <nav class="nav-links">
-                <a href="index.html">Home</a> |
-                <a href="productos.html">Productos</a> |
-                <a href="nosotros.html">Nosotros</a> |
-                <a href="blogs.html" class="activo">Blogs</a> |
-                <a href="contacto.html">Contacto</a>
-            </nav>
-            <a href="carrito.html" class="cart">🛒 Cart (0)</a>
-        </header>
+            <header class="header">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="img/logo-chstore.png" alt="Ch.Store - Volver al inicio" class="header-logo">
+                    </a>
+                </div>
+                <nav class="nav-links">
+                    <a href="index.html">Home</a> |
+                    <a href="productos.html">Productos</a> |
+                    <a href="nosotros.html">Nosotros</a> |
+                    <a href="blogs.html" class="activo">Blogs</a> |
+                    <a href="contacto.html">Contacto</a>
+                </nav>
+                <a href="carrito.html" class="cart-button">
+                    <svg class="cart-icon-svg" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="9" cy="21" r="1"></circle>
+                        <circle cx="20" cy="21" r="1"></circle>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                    </svg>
+                    <span>Carrito</span>
+                    <span class="cart-badge" id="cart-counter">0</span>
+                </a>
+            </header>
 
-        <main class="blog-detalle">
-            <nav class="breadcrumbs" aria-label="Ruta de navegación">
-                <a href="index.html">Home</a> &gt;
-                <a href="blogs.html">Blogs</a> &gt;
-                <span>Cinco formas de cuidar tus prendas</span>
-            </nav>
-
-            <article>
-                <h1>Cinco formas de cuidar tus prendas para que duren más</h1>
-                <p class="blog-meta">Publicado el 22 de septiembre de 2026 · Categoría: Cuidado de prendas</p>
-
-                <img src="https://froens.cl/cdn/shop/files/VESTIDOTROPICNEGRO_2.webp?v=1768960021&width=1067" alt="Vestido largo negro de la colección" class="blog-detalle-imagen">
-
-                <p>Una prenda bien cuidada puede durar años; la misma prenda mal lavada se deforma o destiñe en pocos meses. Estas cinco prácticas son simples y marcan una diferencia real en la vida útil de tu ropa.</p>
-
-                <h2>1. Lava con agua fría</h2>
-                <p>El agua caliente abre las fibras y acelera la pérdida de color, además de encoger prendas de algodón. Salvo que necesites desinfectar, el agua fría limpia igual de bien con un buen detergente y consume menos energía.</p>
-
-                <h2>2. Da vuelta la prenda antes de lavar</h2>
-                <p>Lavar del revés protege el estampado, los bordados y el color de la cara visible. El roce del tambor de la lavadora se concentra en el interior de la prenda, que nadie ve.</p>
-
-                <h2>3. No sobrecargues la lavadora</h2>
-                <p>Cuando la carga es excesiva las prendas no tienen espacio para moverse, se lavan mal y el roce entre ellas genera pilling, esas bolitas que aparecen en las telas. Deja al menos un cuarto del tambor libre.</p>
-
-                <h2>4. Evita la secadora en prendas delicadas</h2>
-                <p>El calor de la secadora es el principal enemigo del elastano, la viscosa y el lino. Secar a la sombra y en horizontal mantiene la forma original de la prenda. Para los tejidos de punto, nunca cuelgues: el peso del agua estira los hombros.</p>
-
-                <h2>5. Guarda correctamente según el tipo de prenda</h2>
-                <p>Los vestidos, blusas y blazers van colgados en perchas anchas que respeten la línea del hombro. Los tejidos de punto y las prendas pesadas van doblados, porque colgados se deforman. Guarda siempre con la ropa completamente seca para evitar humedad y olor.</p>
-
-                <h2>Un último consejo</h2>
-                <p>Revisa siempre la etiqueta de composición antes del primer lavado. Dos minutos de lectura evitan arruinar una prenda que podrías haber usado por años.</p>
-
-                <a href="blogs.html" class="btn-primary">← Volver a blogs</a>
-            </article>
-        </main>
-
-        <footer class="footer">
-            <div class="footer-left">
-                <span class="footer-logo">Ch.Store</span>
-                <a href="productos.html">Productos</a> |
-                <a href="contacto.html">Contacto</a>
+            <div class="auth-links" id="auth-links">
+                <a href="login.html">Iniciar sesión</a> | <a href="registro.html">Registrar usuario</a> | <a href="admin/index.html">Administración</a>
             </div>
-        </footer>
 
+            <main class="blog-detalle">
+                <div class="breadcrumb"><a href="index.html">Home</a> &gt; <a href="blogs.html">Blogs</a> &gt; <span>Cinco formas de cuidar tus prendas</span></div>
+
+                <article>
+                    <header class="articulo-cabecera">
+                        <span class="blog-categoria">Cuidado de prendas</span>
+                        <h1>Cinco formas de cuidar tus prendas para que duren más</h1>
+                        <p class="blog-meta">Publicado el 22 de septiembre de 2026 · 2 min de lectura</p>
+                    </header>
+
+                    <img src="https://froens.cl/cdn/shop/files/VESTIDOTROPICNEGRO_2.webp?v=1768960021&width=1067" alt="Vestido largo negro de la colección" class="blog-detalle-imagen">
+
+                    <p>Una prenda bien cuidada puede durar años; la misma prenda mal lavada se deforma o destiñe en pocos meses. Estas cinco prácticas son simples y marcan una diferencia real en la vida útil de tu ropa.</p>
+
+                    <h2>1. Lava con agua fría</h2>
+                    <p>El agua caliente abre las fibras y acelera la pérdida de color, además de encoger prendas de algodón. Salvo que necesites desinfectar, el agua fría limpia igual de bien con un buen detergente y consume menos energía.</p>
+
+                    <h2>2. Da vuelta la prenda antes de lavar</h2>
+                    <p>Lavar del revés protege el estampado, los bordados y el color de la cara visible. El roce del tambor de la lavadora se concentra en el interior de la prenda, que nadie ve.</p>
+
+                    <h2>3. No sobrecargues la lavadora</h2>
+                    <p>Cuando la carga es excesiva las prendas no tienen espacio para moverse, se lavan mal y el roce entre ellas genera pilling, esas bolitas que aparecen en las telas. Deja al menos un cuarto del tambor libre.</p>
+
+                    <h2>4. Evita la secadora en prendas delicadas</h2>
+                    <p>El calor de la secadora es el principal enemigo del elastano, la viscosa y el lino. Secar a la sombra y en horizontal mantiene la forma original de la prenda. Para los tejidos de punto, nunca cuelgues: el peso del agua estira los hombros.</p>
+
+                    <h2>5. Guarda correctamente según el tipo de prenda</h2>
+                    <p>Los vestidos, blusas y blazers van colgados en perchas anchas que respeten la línea del hombro. Los tejidos de punto y las prendas pesadas van doblados, porque colgados se deforman. Guarda siempre con la ropa completamente seca para evitar humedad y olor.</p>
+
+                    <h2>Un último consejo</h2>
+                    <p>Revisa siempre la etiqueta de composición antes del primer lavado. Dos minutos de lectura evitan arruinar una prenda que podrías haber usado por años.</p>
+
+                    <aside class="articulo-siguiente">
+                        <p class="articulo-siguiente-etiqueta">Sigue leyendo</p>
+                        <a href="detalle_blogs1.html" class="articulo-siguiente-tarjeta">
+                            <img src="https://froens.cl/cdn/shop/files/blazer-alondra-mujer-beige-lifestyle-froens-1_d1653926-de0c-4259-9101-dafda13822c6.webp?v=1784055114&width=600" alt="">
+                            <div>
+                                <span class="blog-categoria">Guías de compra</span>
+                                <h3>Cómo elegir la talla correcta al comprar online</h3>
+                                <span class="articulo-siguiente-leer">Leer artículo →</span>
+                            </div>
+                        </a>
+                    </aside>
+
+                    <div class="articulo-acciones">
+                        <a href="blogs.html" class="btn-volver">← Volver a blogs</a>
+                        <a href="productos.html" class="btn-primary">Ver productos</a>
+                    </div>
+                </article>
+            </main>
+
+            <footer class="footer">
+                <div class="footer-left">
+                    <span class="footer-logo">Ch.Store</span>
+                    <a href="productos.html?categoria=Vestidos">Vestidos</a> |
+                    <a href="productos.html?categoria=Blusas">Blusas</a> |
+                    <a href="productos.html?categoria=Conjuntos">Conjuntos</a> |
+                    <a href="productos.html?categoria=Pantalones">Pantalones</a>
+                    <div class="payment-icons">
+                        <span>💳 VISA</span> <span>💳 MC</span>
+                    </div>
+                </div>
+                <div class="footer-right">
+                    <p>¡Únete a nuestro Newsletter!</p>
+                    <form class="newsletter-form" id="form-newsletter" novalidate>
+                        <input type="email" id="newsletter-correo" placeholder="Tu correo electrónico" maxlength="100" aria-label="Correo para el newsletter">
+                        <button type="submit">Suscribirse</button>
+                    </form>
+                    <span class="mensaje-error" id="error-newsletter"></span>
+                </div>
+            </footer>
+
+        </div>
     </div>
 
+    <script src="js/productos.js"></script>
     <script src="js/validaciones.js"></script>
+    <script src="js/datos.js"></script>
     <script src="js/carrito.js"></script>
     <script src="js/app.js"></script>
 </body>
