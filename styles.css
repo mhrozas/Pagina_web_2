@@ -2614,3 +2614,18 @@ button.close-btn {
 .blogs-list .blog-image img {
     object-position: center top;
 }
+
+/* La regla de 3 columnas para tablets (992px) está más abajo en la hoja
+   que las de main; se restablecen aquí los valores de main para pantallas
+   más chicas: 2 columnas bajo 768px y 1 columna bajo 600px */
+@media (max-width: 768px) {
+    .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .products-grid {
+        grid-template-columns: 1fr;
+    }
+}
