@@ -4,25 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carrito de Compras - Ch.Store</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
     <div class="site-wrapper">
         <div class="container-limits">
-            
-            <!-- HEADER -->
+
             <header class="header">
                 <div class="logo">
                     <a href="index.html">
-                        <img src="img/logo3.png" alt="Logo Ch.Store" class="header-logo">
+                        <img src="img/logo-chstore.png" alt="Ch.Store - Volver al inicio" class="header-logo">
                     </a>
                 </div>
                 <nav class="nav-links">
-                    <a href="index.html">Home</a>
-                    <a href="index.html">Productos</a>
-                    <a href="nosotros.html">Nosotros</a>
-                    <a href="blogs.html">Blogs</a>
+                    <a href="index.html">Home</a> |
+                    <a href="productos.html">Productos</a> |
+                    <a href="nosotros.html">Nosotros</a> |
+                    <a href="blogs.html">Blogs</a> |
                     <a href="contacto.html">Contacto</a>
                 </nav>
                 <a href="carrito.html" class="cart-button">
@@ -32,43 +34,33 @@
                         <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
                     </svg>
                     <span>Carrito</span>
-                    <span class="cart-badge" id="cart-counter">1</span>
+                    <span class="cart-badge" id="cart-counter">0</span>
                 </a>
             </header>
+
+            <div class="auth-links" id="auth-links">
+                <a href="login.html">Iniciar sesión</a> | <a href="registro.html">Registrar usuario</a> | <a href="admin/index.html">Administración</a>
+            </div>
 
             <!-- CONTENIDO DEL CARRITO -->
             <main class="cart-container">
                 <h1 class="cart-title">Mi carrito de compras</h1>
-                
-                <div class="cart-layout">
-                    <!-- Columna Izquierda: Lista de Productos -->
-                    <div class="cart-items">
-                        
-                        <!-- Producto de ejemplo en el carrito -->
-                        <div class="cart-item" id="fila-producto">
-                            <img src="https://froens.cl/cdn/shop/files/VESTIDOTROPICNEGRO_2.webp" alt="Vestido Largo Negro">
-                            <div class="cart-item-details">
-                                <h3>Vestido Largo Negro</h3>
-                                <p class="item-size">Talla: L</p>
-                                <button class="btn-remove" onclick="eliminarProducto()">Eliminar</button>
-                            </div>
-                            <div class="cart-item-quantity">
-                                <input type="number" id="cantidad-producto" value="1" min="1" onchange="actualizarTotal()">
-                            </div>
-                            <div class="cart-item-price">
-                                $20.00
-                            </div>
-                        </div>
-                        
-                    </div>
 
-                    <!-- Columna Derecha: Resumen de Compra -->
+                <div class="cart-layout" id="carrito-contenido">
+                    <!-- Columna izquierda: productos del carrito (js/carrito.js) -->
+                    <div class="cart-items" id="lista-carrito"></div>
+
+                    <!-- Columna derecha: resumen de compra -->
                     <div class="cart-summary">
                         <h2>Resumen del pedido</h2>
-                        
+
                         <div class="summary-row">
                             <span>Subtotal</span>
-                            <span id="subtotal-precio">$20.00</span>
+                            <span id="subtotal-precio">$ 0</span>
+                        </div>
+                        <div class="summary-row fila-descuento" id="fila-descuento">
+                            <span>Descuento</span>
+                            <span id="descuento-precio"></span>
                         </div>
                         <div class="summary-row">
                             <span>Envío</span>
@@ -76,122 +68,54 @@
                         </div>
                         <div class="summary-row total-row">
                             <span>TOTAL</span>
-                            <span id="total-precio">$20.00</span>
+                            <span id="total-precio">$ 0</span>
                         </div>
 
-                        <!-- Sección de Cupón -->
+                        <!-- Sección de cupón -->
                         <div class="coupon-section">
-                            <label for="codigo-descuento">Ingrese el cupón de descuento</label>
+                            <label for="cupon">Ingrese el cupón de descuento</label>
                             <div class="coupon-input-group">
-                                <input type="text" id="codigo-descuento" placeholder="CÓDIGO">
-                                <button class="btn-apply" onclick="aplicarDescuento()">Aplicar</button>
+                                <input type="text" id="cupon" placeholder="CÓDIGO" maxlength="20">
+                                <button type="button" class="btn-apply" id="btn-aplicar-cupon">Aplicar</button>
                             </div>
+                            <span class="mensaje-error" id="error-cupon"></span>
                         </div>
 
-                        <button class="btn-checkout" onclick="procesarCompra()">PAGAR</button>
+                        <button type="button" class="btn-checkout" id="btn-pagar">PAGAR</button>
+                        <span class="mensaje-error" id="error-pago"></span>
+                        <button type="button" class="btn-vaciar" id="btn-vaciar">Vaciar carrito</button>
                     </div>
                 </div>
             </main>
 
-            <!-- FOOTER -->
             <footer class="footer">
                 <div class="footer-left">
                     <span class="footer-logo">Ch.Store</span>
-                    <a href="#">Términos</a> | <a href="#">Privacidad</a>
-                    
+                    <a href="productos.html?categoria=Vestidos">Vestidos</a> |
+                    <a href="productos.html?categoria=Blusas">Blusas</a> |
+                    <a href="productos.html?categoria=Conjuntos">Conjuntos</a> |
+                    <a href="productos.html?categoria=Pantalones">Pantalones</a>
+                    <div class="payment-icons">
+                        <span>💳 VISA</span> <span>💳 MC</span>
+                    </div>
                 </div>
                 <div class="footer-right">
                     <p>¡Únete a nuestro Newsletter!</p>
-                    <form class="newsletter-form">
-                        <input type="email" placeholder="Tu correo electrónico" required>
-                        <button type="submit">Suscribir</button>
+                    <form class="newsletter-form" id="form-newsletter" novalidate>
+                        <input type="email" id="newsletter-correo" placeholder="Tu correo electrónico" maxlength="100" aria-label="Correo para el newsletter">
+                        <button type="submit">Suscribirse</button>
                     </form>
+                    <span class="mensaje-error" id="error-newsletter"></span>
                 </div>
             </footer>
 
         </div>
     </div>
 
-    <!-- SCRIPT DE FUNCIONALIDAD DEL CARRITO -->
-    <script>
-        const precioUnitario = 20.00;
-        let porcentajeDescuento = 0;
-
-        // Calcula subtotal y total según cantidad y cupón activo
-        function actualizarTotal() {
-            const inputCantidad = document.getElementById('cantidad-producto');
-            let cantidad = parseInt(inputCantidad.value);
-
-            if (cantidad < 1 || isNaN(cantidad)) {
-                cantidad = 1;
-                inputCantidad.value = 1;
-            }
-
-            const subtotal = precioUnitario * cantidad;
-            const totalConDescuento = subtotal - (subtotal * porcentajeDescuento);
-
-            document.getElementById('subtotal-precio').innerText = '$' + subtotal.toFixed(2);
-            
-            if (porcentajeDescuento > 0) {
-                document.getElementById('total-precio').innerHTML = `<span style="text-decoration: line-through; color: #999; font-size: 14px; margin-right: 8px;">$${subtotal.toFixed(2)}</span>$${totalConDescuento.toFixed(2)}`;
-            } else {
-                document.getElementById('total-precio').innerText = '$' + totalConDescuento.toFixed(2);
-            }
-        }
-
-        // Aplica el cupón ingresado por el usuario
-        function aplicarDescuento() {
-            const inputDescuento = document.getElementById('codigo-descuento');
-            const codigo = inputDescuento.value.trim().toUpperCase();
-
-            if (codigo === 'DESCUENTO20') {
-                porcentajeDescuento = 0.20;
-                alert('¡Código de 20% de descuento aplicado con éxito!');
-            } else if (codigo === 'CHSTORE10') {
-                porcentajeDescuento = 0.10;
-                alert('¡Código de 10% de descuento aplicado con éxito!');
-            } else if (codigo === '') {
-                alert('Por favor, ingresa un código de descuento.');
-                return;
-            } else {
-                porcentajeDescuento = 0;
-                alert('Código inválido. Revisa el texto e intenta nuevamente.');
-            }
-
-            actualizarTotal();
-        }
-
-        // Procesa el pago, limpia la vista y genera un código de envío aleatorio
-        function procesarCompra() {
-            const fila = document.getElementById('fila-producto');
-            
-            if (fila.style.display === 'none') {
-                alert('Tu carrito está vacío. Agrega productos para realizar una compra.');
-                return;
-            }
-
-            // Generar código aleatorio de envío de 6 caracteres (Ej: CH-8A3X1Z)
-            const caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-            let codigoEnvio = 'CH-';
-            for (let i = 0; i < 6; i++) {
-                codigoEnvio += caracteres.charAt(Math.floor(Math.random() * caracteres.length));
-            }
-
-            alert(`¡Compra realizada con éxito!\\n\\nTu número de seguimiento de envío es: ${codigoEnvio}`);
-
-            // Limpiar el producto visualmente y reiniciar valores
-            eliminarProducto();
-            document.getElementById('codigo-descuento').value = '';
-            porcentajeDescuento = 0;
-        }
-
-        // Elimina el producto visualmente y resetea contadores
-        function eliminarProducto() {
-            document.getElementById('fila-producto').style.display = 'none';
-            document.getElementById('subtotal-precio').innerText = '$0.00';
-            document.getElementById('total-precio').innerText = '$0.00';
-            document.getElementById('cart-counter').innerText = '0';
-        }
-    </script>
+    <script src="js/productos.js"></script>
+    <script src="js/validaciones.js"></script>
+    <script src="js/datos.js"></script>
+    <script src="js/carrito.js"></script>
+    <script src="js/app.js"></script>
 </body>
 </html>

@@ -4,74 +4,125 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cómo elegir la talla correcta - Ch.Store</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <div class="barra-lectura" id="barra-lectura" aria-hidden="true"></div>
 
     <div class="site-wrapper">
+        <div class="container-limits">
 
-        <header class="header">
-            <div class="logo">■ Ch.Store</div>
-            <nav class="nav-links">
-                <a href="index.html">Home</a> |
-                <a href="productos.html">Productos</a> |
-                <a href="nosotros.html">Nosotros</a> |
-                <a href="blogs.html" class="activo">Blogs</a> |
-                <a href="contacto.html">Contacto</a>
-            </nav>
-            <a href="carrito.html" class="cart">🛒 Cart (0)</a>
-        </header>
+            <header class="header">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="img/logo-chstore.png" alt="Ch.Store - Volver al inicio" class="header-logo">
+                    </a>
+                </div>
+                <nav class="nav-links">
+                    <a href="index.html">Home</a> |
+                    <a href="productos.html">Productos</a> |
+                    <a href="nosotros.html">Nosotros</a> |
+                    <a href="blogs.html" class="activo">Blogs</a> |
+                    <a href="contacto.html">Contacto</a>
+                </nav>
+                <a href="carrito.html" class="cart-button">
+                    <svg class="cart-icon-svg" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="9" cy="21" r="1"></circle>
+                        <circle cx="20" cy="21" r="1"></circle>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                    </svg>
+                    <span>Carrito</span>
+                    <span class="cart-badge" id="cart-counter">0</span>
+                </a>
+            </header>
 
-        <main class="blog-detalle">
-            <nav class="breadcrumbs" aria-label="Ruta de navegación">
-                <a href="index.html">Home</a> &gt;
-                <a href="blogs.html">Blogs</a> &gt;
-                <span>Cómo elegir la talla correcta</span>
-            </nav>
-
-            <article>
-                <h1>Cómo elegir la talla correcta al comprar online</h1>
-                <p class="blog-meta">Publicado el 15 de septiembre de 2026 · Categoría: Guías de compra</p>
-
-                <img src="https://froens.cl/cdn/shop/files/blazer-alondra-mujer-beige-lifestyle-froens-1_d1653926-de0c-4259-9101-dafda13822c6.webp?v=1784055114&width=1282" alt="Modelo con conjunto beige mostrando el calce de la prenda" class="blog-detalle-imagen">
-
-                <p>La principal razón por la que una compra de ropa online termina en cambio o devolución es la talla. A diferencia de una tienda física, aquí no puedes probarte la prenda antes de decidir. La buena noticia es que con tres medidas y cinco minutos puedes acertar casi siempre.</p>
-
-                <h2>Toma tus medidas en casa</h2>
-                <p>Necesitas una huincha de medir flexible. Mídete sobre ropa liviana, de pie y relajada, sin apretar la huincha contra el cuerpo. Las tres medidas que usamos en nuestra tabla de tallas son:</p>
-                <ul>
-                    <li><strong>Busto:</strong> rodea la parte más ancha del pecho, pasando la huincha por debajo de los brazos.</li>
-                    <li><strong>Cintura:</strong> mide en la parte más angosta del torso, generalmente a la altura del ombligo.</li>
-                    <li><strong>Cadera:</strong> rodea la parte más ancha de la cadera, aproximadamente 20 cm bajo la cintura.</li>
-                </ul>
-
-                <h2>Compara contra la tabla, no contra tu talla habitual</h2>
-                <p>Un error frecuente es asumir que si usas talla M en una marca, usarás M en todas. El tallaje varía entre fabricantes e incluso entre modelos de una misma marca. Cada ficha de producto de Ch.Store incluye su tabla de medidas en centímetros: esa es la referencia que debes usar.</p>
-
-                <h2>Considera el calce de la prenda</h2>
-                <p>Una prenda de calce ajustado con la misma medida de busto se sentirá muy distinta a una de calce holgado. En la descripción de cada producto indicamos si el calce es ajustado, regular u oversize. Si estás entre dos tallas y la prenda es de calce ajustado, conviene elegir la mayor.</p>
-
-                <h2>Revisa el material</h2>
-                <p>Las telas con elastano ceden y perdonan un par de centímetros. El lino y el algodón rígido no. Si la prenda no tiene elasticidad y tus medidas quedan justo en el límite superior de una talla, sube a la siguiente.</p>
-
-                <h2>En resumen</h2>
-                <p>Mide, compara contra la tabla del producto específico, revisa el calce y considera el material. Con esos cuatro pasos la probabilidad de acertar sube muchísimo. Y si de todas formas no quedó como esperabas, nuestro plazo de cambio es de 30 días.</p>
-
-                <a href="blogs.html" class="btn-primary">← Volver a blogs</a>
-            </article>
-        </main>
-
-        <footer class="footer">
-            <div class="footer-left">
-                <span class="footer-logo">Ch.Store</span>
-                <a href="productos.html">Productos</a> |
-                <a href="contacto.html">Contacto</a>
+            <div class="auth-links" id="auth-links">
+                <a href="login.html">Iniciar sesión</a> | <a href="registro.html">Registrar usuario</a> | <a href="admin/index.html">Administración</a>
             </div>
-        </footer>
 
+            <main class="blog-detalle">
+                <div class="breadcrumb"><a href="index.html">Home</a> &gt; <a href="blogs.html">Blogs</a> &gt; <span>Cómo elegir la talla correcta</span></div>
+
+                <article>
+                    <header class="articulo-cabecera">
+                        <span class="blog-categoria">Guías de compra</span>
+                        <h1>Cómo elegir la talla correcta al comprar online</h1>
+                        <p class="blog-meta">Publicado el 15 de septiembre de 2026 · 2 min de lectura</p>
+                    </header>
+
+                    <img src="https://froens.cl/cdn/shop/files/blazer-alondra-mujer-beige-lifestyle-froens-1_d1653926-de0c-4259-9101-dafda13822c6.webp?v=1784055114&width=1282" alt="Modelo con conjunto beige mostrando el calce de la prenda" class="blog-detalle-imagen">
+
+                    <p>La principal razón por la que una compra de ropa online termina en cambio o devolución es la talla. A diferencia de una tienda física, aquí no puedes probarte la prenda antes de decidir. La buena noticia es que con tres medidas y cinco minutos puedes acertar casi siempre.</p>
+
+                    <h2>Toma tus medidas en casa</h2>
+                    <p>Necesitas una huincha de medir flexible. Mídete sobre ropa liviana, de pie y relajada, sin apretar la huincha contra el cuerpo. Las tres medidas que usamos en nuestra tabla de tallas son:</p>
+                    <ul>
+                        <li><strong>Busto:</strong> rodea la parte más ancha del pecho, pasando la huincha por debajo de los brazos.</li>
+                        <li><strong>Cintura:</strong> mide en la parte más angosta del torso, generalmente a la altura del ombligo.</li>
+                        <li><strong>Cadera:</strong> rodea la parte más ancha de la cadera, aproximadamente 20 cm bajo la cintura.</li>
+                    </ul>
+
+                    <h2>Compara contra la tabla, no contra tu talla habitual</h2>
+                    <p>Un error frecuente es asumir que si usas talla M en una marca, usarás M en todas. El tallaje varía entre fabricantes e incluso entre modelos de una misma marca. Cada ficha de producto de Ch.Store incluye su tabla de medidas en centímetros: esa es la referencia que debes usar.</p>
+
+                    <h2>Considera el calce de la prenda</h2>
+                    <p>Una prenda de calce ajustado con la misma medida de busto se sentirá muy distinta a una de calce holgado. En la descripción de cada producto indicamos si el calce es ajustado, regular u oversize. Si estás entre dos tallas y la prenda es de calce ajustado, conviene elegir la mayor.</p>
+
+                    <h2>Revisa el material</h2>
+                    <p>Las telas con elastano ceden y perdonan un par de centímetros. El lino y el algodón rígido no. Si la prenda no tiene elasticidad y tus medidas quedan justo en el límite superior de una talla, sube a la siguiente.</p>
+
+                    <h2>En resumen</h2>
+                    <p>Mide, compara contra la tabla del producto específico, revisa el calce y considera el material. Con esos cuatro pasos la probabilidad de acertar sube muchísimo. Y si de todas formas no quedó como esperabas, nuestro plazo de cambio es de 30 días.</p>
+
+                    <aside class="articulo-siguiente">
+                        <p class="articulo-siguiente-etiqueta">Sigue leyendo</p>
+                        <a href="detalle_blogs2.html" class="articulo-siguiente-tarjeta">
+                            <img src="https://froens.cl/cdn/shop/files/VESTIDOTROPICNEGRO_2.webp?v=1768960021&width=600" alt="">
+                            <div>
+                                <span class="blog-categoria">Cuidado de prendas</span>
+                                <h3>Cinco formas de cuidar tus prendas para que duren más</h3>
+                                <span class="articulo-siguiente-leer">Leer artículo →</span>
+                            </div>
+                        </a>
+                    </aside>
+
+                    <div class="articulo-acciones">
+                        <a href="blogs.html" class="btn-volver">← Volver a blogs</a>
+                        <a href="productos.html" class="btn-primary">Ver productos</a>
+                    </div>
+                </article>
+            </main>
+
+            <footer class="footer">
+                <div class="footer-left">
+                    <span class="footer-logo">Ch.Store</span>
+                    <a href="productos.html?categoria=Vestidos">Vestidos</a> |
+                    <a href="productos.html?categoria=Blusas">Blusas</a> |
+                    <a href="productos.html?categoria=Conjuntos">Conjuntos</a> |
+                    <a href="productos.html?categoria=Pantalones">Pantalones</a>
+                    <div class="payment-icons">
+                        <span>💳 VISA</span> <span>💳 MC</span>
+                    </div>
+                </div>
+                <div class="footer-right">
+                    <p>¡Únete a nuestro Newsletter!</p>
+                    <form class="newsletter-form" id="form-newsletter" novalidate>
+                        <input type="email" id="newsletter-correo" placeholder="Tu correo electrónico" maxlength="100" aria-label="Correo para el newsletter">
+                        <button type="submit">Suscribirse</button>
+                    </form>
+                    <span class="mensaje-error" id="error-newsletter"></span>
+                </div>
+            </footer>
+
+        </div>
     </div>
 
+    <script src="js/productos.js"></script>
     <script src="js/validaciones.js"></script>
+    <script src="js/datos.js"></script>
     <script src="js/carrito.js"></script>
     <script src="js/app.js"></script>
 </body>
