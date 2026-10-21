@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Órdenes - Panel de administración</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body class="admin-body">
+
+    <div class="admin-layout">
+
+        <aside class="admin-sidebar">
+            <div class="admin-logo">■ Ch.Store</div>
+            <p class="admin-subtitulo">Panel de administración</p>
+
+            <nav class="admin-menu" id="admin-menu">
+                <a href="index.html" data-permiso="inicio">Inicio</a>
+                <a href="productos.html" data-permiso="productos">Productos</a>
+                <a href="usuarios.html" data-permiso="usuarios">Usuarios</a>
+                <a href="ordenes.html" class="activo" data-permiso="ordenes">Órdenes</a>
+            </nav>
+
+            <div class="admin-sidebar-pie">
+                <label for="selector-rol">Perfil activo</label>
+                <select id="selector-rol">
+                    <option value="Administrador">Administrador</option>
+                    <option value="Vendedor">Vendedor</option>
+                </select>
+                <a href="../index.html" class="admin-salir">← Volver a la tienda</a>
+            </div>
+        </aside>
+
+        <main class="admin-contenido">
+
+            <header class="admin-header">
+                <h1>Listado de órdenes</h1>
+                <span class="admin-usuario">Sesión: <strong id="rol-actual">Administrador</strong></span>
+            </header>
+
+            <section class="admin-panel">
+                <p class="admin-ayuda">Vista de consulta disponible para los perfiles Administrador y Vendedor.</p>
+
+                <table class="admin-tabla">
+                    <thead>
+                        <tr>
+                            <th>N° Orden</th>
+                            <th>Cliente</th>
+                            <th>Fecha</th>
+                            <th>Productos</th>
+                            <th>Total</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla-ordenes">
+                        <!-- Se llena desde js/admin.js -->
+                    </tbody>
+                </table>
+            </section>
+
+        </main>
+    </div>
+
+    <script src="../js/productos.js"></script>
+    <script src="../js/regiones.js"></script>
+    <script src="../js/validaciones.js"></script>
+    <script src="../js/admin.js"></script>
+</body>
+</html>

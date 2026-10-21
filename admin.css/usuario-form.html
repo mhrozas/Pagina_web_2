@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuevo usuario - Panel de administración</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body class="admin-body">
+
+    <div class="admin-layout">
+
+        <aside class="admin-sidebar">
+            <div class="admin-logo">■ Ch.Store</div>
+            <p class="admin-subtitulo">Panel de administración</p>
+
+            <nav class="admin-menu" id="admin-menu">
+                <a href="index.html" data-permiso="inicio">Inicio</a>
+                <a href="productos.html" data-permiso="productos">Productos</a>
+                <a href="usuarios.html" class="activo" data-permiso="usuarios">Usuarios</a>
+                <a href="ordenes.html" data-permiso="ordenes">Órdenes</a>
+            </nav>
+
+            <div class="admin-sidebar-pie">
+                <label for="selector-rol">Perfil activo</label>
+                <select id="selector-rol">
+                    <option value="Administrador">Administrador</option>
+                    <option value="Vendedor">Vendedor</option>
+                </select>
+                <a href="../index.html" class="admin-salir">← Volver a la tienda</a>
+            </div>
+        </aside>
+
+        <main class="admin-contenido">
+
+            <header class="admin-header">
+                <h1 id="titulo-formulario">Nuevo usuario</h1>
+                <a href="usuarios.html" class="btn-secundario">← Volver al listado</a>
+            </header>
+
+            <section class="admin-panel">
+
+                <form id="form-usuario" novalidate>
+
+                    <div class="form-row">
+                        <div class="form-group half-width">
+                            <label for="run">RUN <span class="obligatorio">*</span></label>
+                            <input type="text" id="run" name="run" maxlength="9" placeholder="Ej: 19011029K" required>
+                            <span class="ayuda-campo">Sin puntos ni guion, entre 7 y 9 caracteres.</span>
+                            <span class="mensaje-error" id="error-run"></span>
+                        </div>
+                        <div class="form-group half-width">
+                            <label for="tipoUsuario">TIPO DE USUARIO <span class="obligatorio">*</span></label>
+                            <select id="tipoUsuario" name="tipoUsuario" required>
+                                <option value="">-- Seleccione el perfil --</option>
+                                <option value="Administrador">Administrador</option>
+                                <option value="Vendedor">Vendedor</option>
+                                <option value="Cliente">Cliente</option>
+                            </select>
+                            <span class="mensaje-error" id="error-tipoUsuario"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group half-width">
+                            <label for="nombre">NOMBRE <span class="obligatorio">*</span></label>
+                            <input type="text" id="nombre" name="nombre" maxlength="50" required>
+                            <span class="ayuda-campo">Máximo 50 caracteres.</span>
+                            <span class="mensaje-error" id="error-nombre"></span>
+                        </div>
+                        <div class="form-group half-width">
+                            <label for="apellidos">APELLIDOS <span class="obligatorio">*</span></label>
+                            <input type="text" id="apellidos" name="apellidos" maxlength="100" required>
+                            <span class="ayuda-campo">Máximo 100 caracteres.</span>
+                            <span class="mensaje-error" id="error-apellidos"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group half-width">
+                            <label for="correo">CORREO <span class="obligatorio">*</span></label>
+                            <input type="email" id="correo" name="correo" maxlength="100" required>
+                            <span class="ayuda-campo">Solo @duoc.cl, @profesor.duoc.cl y @gmail.com.</span>
+                            <span class="mensaje-error" id="error-correo"></span>
+                        </div>
+                        <div class="form-group half-width">
+                            <label for="fechaNacimiento">FECHA DE NACIMIENTO</label>
+                            <input type="date" id="fechaNacimiento" name="fechaNacimiento">
+                            <span class="ayuda-campo">Campo opcional.</span>
+                            <span class="mensaje-error" id="error-fechaNacimiento"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group half-width">
+                            <label for="region">REGIÓN <span class="obligatorio">*</span></label>
+                            <select id="region" name="region" required>
+                                <option value="">-- Seleccione la región --</option>
+                            </select>
+                            <span class="mensaje-error" id="error-region"></span>
+                        </div>
+                        <div class="form-group half-width">
+                            <label for="comuna">COMUNA <span class="obligatorio">*</span></label>
+                            <select id="comuna" name="comuna" required disabled>
+                                <option value="">-- Seleccione la comuna --</option>
+                            </select>
+                            <span class="mensaje-error" id="error-comuna"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="direccion">DIRECCIÓN <span class="obligatorio">*</span></label>
+                        <input type="text" id="direccion" name="direccion" maxlength="300" required>
+                        <span class="ayuda-campo">Máximo 300 caracteres.</span>
+                        <span class="mensaje-error" id="error-direccion"></span>
+                    </div>
+
+                    <div class="admin-form-acciones">
+                        <button type="submit" class="btn-register">GUARDAR USUARIO</button>
+                        <a href="usuarios.html" class="btn-secundario">Cancelar</a>
+                    </div>
+                </form>
+
+                <div class="mensaje-exito" id="exito-usuario"></div>
+
+            </section>
+        </main>
+    </div>
+
+    <script src="../js/productos.js"></script>
+    <script src="../js/regiones.js"></script>
+    <script src="../js/validaciones.js"></script>
+    <script src="../js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuevo producto - Panel de administración</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body class="admin-body">
+
+    <div class="admin-layout">
+
+        <aside class="admin-sidebar">
+            <div class="admin-logo">■ Ch.Store</div>
+            <p class="admin-subtitulo">Panel de administración</p>
+
+            <nav class="admin-menu" id="admin-menu">
+                <a href="index.html" data-permiso="inicio">Inicio</a>
+                <a href="productos.html" class="activo" data-permiso="productos">Productos</a>
+                <a href="usuarios.html" data-permiso="usuarios">Usuarios</a>
+                <a href="ordenes.html" data-permiso="ordenes">Órdenes</a>
+            </nav>
+
+            <div class="admin-sidebar-pie">
+                <label for="selector-rol">Perfil activo</label>
+                <select id="selector-rol">
+                    <option value="Administrador">Administrador</option>
+                    <option value="Vendedor">Vendedor</option>
+                </select>
+                <a href="../index.html" class="admin-salir">← Volver a la tienda</a>
+            </div>
+        </aside>
+
+        <main class="admin-contenido">
+
+            <header class="admin-header">
+                <h1 id="titulo-formulario">Nuevo producto</h1>
+                <a href="productos.html" class="btn-secundario">← Volver al listado</a>
+            </header>
+
+            <section class="admin-panel">
+
+                <form id="form-producto" novalidate>
+
+                    <div class="form-row">
+                        <div class="form-group half-width">
+                            <label for="codigo">CÓDIGO DEL PRODUCTO <span class="obligatorio">*</span></label>
+                            <input type="text" id="codigo" name="codigo" required>
+                            <span class="ayuda-campo">Mínimo 3 caracteres, sin límite máximo.</span>
+                            <span class="mensaje-error" id="error-codigo"></span>
+                        </div>
+                        <div class="form-group half-width">
+                            <label for="categoria">CATEGORÍA <span class="obligatorio">*</span></label>
+                            <select id="categoria" name="categoria" required>
+                                <option value="">-- Seleccione la categoría --</option>
+                            </select>
+                            <span class="mensaje-error" id="error-categoria"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="nombre">NOMBRE <span class="obligatorio">*</span></label>
+                        <input type="text" id="nombre" name="nombre" maxlength="100" required>
+                        <span class="ayuda-campo">Máximo 100 caracteres.</span>
+                        <span class="mensaje-error" id="error-nombre"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="descripcion">DESCRIPCIÓN</label>
+                        <textarea id="descripcion" name="descripcion" rows="5" maxlength="500"></textarea>
+                        <span class="contador-caracteres" id="contador-descripcion">0 / 500</span>
+                        <span class="ayuda-campo">Campo opcional. Máximo 500 caracteres.</span>
+                        <span class="mensaje-error" id="error-descripcion"></span>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group half-width">
+                            <label for="precio">PRECIO <span class="obligatorio">*</span></label>
+                            <input type="number" id="precio" name="precio" step="0.01" min="0" required>
+                            <span class="ayuda-campo">Admite decimales. El valor 0 se considera un producto gratuito.</span>
+                            <span class="mensaje-error" id="error-precio"></span>
+                        </div>
+                        <div class="form-group half-width">
+                            <label for="stock">STOCK <span class="obligatorio">*</span></label>
+                            <input type="number" id="stock" name="stock" step="1" min="0" required>
+                            <span class="ayuda-campo">Solo números enteros, mínimo 0.</span>
+                            <span class="mensaje-error" id="error-stock"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group half-width">
+                            <label for="stockCritico">STOCK CRÍTICO</label>
+                            <input type="number" id="stockCritico" name="stockCritico" step="1" min="0">
+                            <span class="ayuda-campo">Opcional. Se alertará cuando el stock sea igual o inferior.</span>
+                            <span class="mensaje-error" id="error-stockCritico"></span>
+                        </div>
+                        <div class="form-group half-width">
+                            <label for="imagen">IMAGEN (URL)</label>
+                            <input type="text" id="imagen" name="imagen">
+                            <span class="ayuda-campo">Campo opcional.</span>
+                            <span class="mensaje-error" id="error-imagen"></span>
+                        </div>
+                    </div>
+
+                    <div class="admin-form-acciones">
+                        <button type="submit" class="btn-register">GUARDAR PRODUCTO</button>
+                        <a href="productos.html" class="btn-secundario">Cancelar</a>
+                    </div>
+                </form>
+
+                <div class="mensaje-exito" id="exito-producto"></div>
+
+            </section>
+        </main>
+    </div>
+
+    <script src="../js/productos.js"></script>
+    <script src="../js/regiones.js"></script>
+    <script src="../js/validaciones.js"></script>
+    <script src="../js/admin.js"></script>
+</body>
+</html>
