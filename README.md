@@ -17,13 +17,19 @@ panel de administración.
 
 ---
 
+> **Entrega 2:** la versión en React con Bootstrap, el panel ampliado y las pruebas con
+> Jasmine y Karma están en [`frontend-react/`](frontend-react/README.md) (rama
+> `entrega-2-react`). Los documentos actualizados son `docs/ERS-v2.md` y
+> `docs/cobertura-testing.md`. La versión 1, en HTML y JavaScript puro, se conserva en [`legacy/`](legacy/); lo que sigue la describe y sus rutas son relativas a esa carpeta.
+
 ## Cómo ejecutar el proyecto
 
 El sitio es estático, pero el detalle de producto lee parámetros de la URL, por lo que
 conviene servirlo desde un servidor local en lugar de abrir los archivos directamente.
 
 ```bash
-# Desde la raíz del proyecto
+# Desde la carpeta legacy/
+cd legacy
 python3 -m http.server 8000
 ```
 
