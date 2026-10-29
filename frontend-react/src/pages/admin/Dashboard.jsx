@@ -29,7 +29,9 @@ export default function Dashboard() {
             <div className="row g-3 mb-4">
                 <div className="col-md-4"><TarjetaIndicador titulo="Compras" valor={ind.compras} detalle={`Ingresos: ${formatearPrecio(ind.ingresos)}`} color="primary" icono="bi-cart3" /></div>
                 <div className="col-md-4"><TarjetaIndicador titulo="Productos" valor={ind.productos} detalle={`Inventario actual: ${ind.inventario}`} color="success" icono="bi-box-seam" /></div>
-                <div className="col-md-4"><TarjetaIndicador titulo="Usuarios" valor={ind.usuarios} detalle="Cuentas registradas" color="warning" icono="bi-people" /></div>
+                {puedeVer(sesion.tipoUsuario, 'usuarios') && (
+                    <div className="col-md-4"><TarjetaIndicador titulo="Usuarios" valor={ind.usuarios} detalle="Cuentas registradas" color="warning" icono="bi-people" /></div>
+                )}
             </div>
 
             {ind.criticos > 0 && (

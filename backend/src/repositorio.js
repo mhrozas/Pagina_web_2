@@ -165,10 +165,30 @@ export function eliminar(db, coleccion, id) {
     if (resultado.changes === 0) throw new ErrorDeNegocio('El registro no existe.', 404);
 }
 
+/** Guarda el hash de la contraseña de un usuario (nunca se devuelve por la API). */
+export function fijarPassword(db, run, hash) {
+    db.prepare('UPDATE usuarios SET password_hash = ? WHERE run = ?').run(hash, run);
+}
+
+/** Datos necesarios para iniciar sesión; el correo no distingue mayúsculas. */
+export function obtenerCredenciales(db, correo) {
+    return db.prepare('SELECT run, password_hash FROM usuarios WHERE correo = ?').get(correo);
+}
+
 /** Descuenta las unidades vendidas; el stock nunca baja de cero. */
 export function descontarStock(db, items) {
     const descontar = db.prepare('UPDATE productos SET stock = MAX(stock - ?, 0) WHERE codigo = ?');
-    transaccion(db, () => {
-        items.forEach(item => descontar.run(Number(item.cantidad) || 0, item.codigo));
+    items.forEach(item => descontar.run(Number(item.cantidad) || 0, item.codigo));
+}
+
+/** Registra una orden; si el pago fue aprobado descuenta el stock en la misma transacción. */
+export function crearOrden(db, orden) {
+    return transaccion(db, () => {
+        const creada = crear(db, 'ordenes', orden);
+        if (orden.estado === ESTADO_APROBADA && Array.isArray(orden.items)) descontarStock(db, orden.items);
+        return creada;
     });
 }
+
+export const ESTADO_APROBADA = 'Pendiente de despacho';
+export const ESTADO_RECHAZADA = 'Pago rechazado';

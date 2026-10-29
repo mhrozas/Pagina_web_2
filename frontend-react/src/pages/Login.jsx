@@ -4,6 +4,8 @@ import Boton from '../components/Boton';
 import CampoFormulario from '../components/CampoFormulario';
 import MensajeError from '../components/MensajeError';
 import { useSesion, puedeEntrarAlPanel } from '../context/SesionContext';
+import { usandoApi } from '../data/db';
+import { alResolver } from '../utils/asincrono';
 import { encadenar, validarCampos, validarCorreo, validarRango, validarRequerido } from '../utils/validaciones';
 
 const REGLAS = {
@@ -30,12 +32,13 @@ export default function Login() {
         setErrores(nuevos);
         if (Object.keys(nuevos).length > 0) return;
 
-        const resultado = iniciarSesion(datos.correo);
-        if (!resultado.exito) {
-            setErrorGeneral(resultado.mensaje);
-            return;
-        }
-        navegar(puedeEntrarAlPanel(resultado.sesion) ? '/admin' : '/');
+        alResolver(iniciarSesion(datos.correo, datos.password), resultado => {
+            if (!resultado.exito) {
+                setErrorGeneral(resultado.mensaje);
+                return;
+            }
+            navegar(puedeEntrarAlPanel(resultado.sesion) ? '/admin' : '/');
+        });
     };
 
     return (
@@ -50,7 +53,7 @@ export default function Login() {
                         <Boton tipo="submit" etiqueta="INGRESAR" className="w-100" />
                         <p className="small mt-3 mb-1">¿No tienes cuenta? <Link to="/registro">Regístrate aquí</Link></p>
                         <p className="small mb-0"><Link to="/">← Volver a la tienda</Link></p>
-                        <p className="small text-muted mt-3 mb-0">Demo: admin@duoc.cl, vendedor@duoc.cl o cliente@gmail.com (contraseña de 4 a 10 caracteres).</p>
+                        <p className="small text-muted mt-3 mb-0">Demo: admin@duoc.cl, vendedor@duoc.cl o cliente@gmail.com {usandoApi() ? '(contraseña: demo1234).' : '(contraseña de 4 a 10 caracteres).'}</p>
                     </form>
                 </div>
             </div>

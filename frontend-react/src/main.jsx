@@ -6,9 +6,9 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import './index.css';
 import App from './App.jsx';
-import { SesionProvider } from './context/SesionContext.jsx';
+import { CLAVE_SESION, SesionProvider } from './context/SesionContext.jsx';
 import { CarritoProvider } from './context/CarritoContext.jsx';
-import { conectarApi } from './data/db';
+import { conectarApi, restaurarSesionApi } from './data/db';
 
 /* Con backend los datos se cargan antes de mostrar la tienda; si no responde, se usa localStorage */
 async function iniciar() {
@@ -16,6 +16,8 @@ async function iniciar() {
     if (url) {
         try {
             await conectarApi(url);
+            // Una sesión guardada solo vale si el servidor sigue reconociendo su token
+            if (!(await restaurarSesionApi())) localStorage.removeItem(CLAVE_SESION);
         } catch (error) {
             console.warn('Backend no disponible, se usan los datos locales:', error.message);
         }

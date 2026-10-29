@@ -29,8 +29,11 @@ poder probar ambos caminos.
 
 Desde la raíz del repositorio, un solo comando levanta la API (puerto 3001) y el frontend
 (puerto 5173). La base de datos se crea sola. El archivo `.env` activa el modo API
-(`VITE_API_URL=/api`); Vite reenvía `/api` al backend. Si el backend no responde, la
-tienda sigue funcionando con localStorage. Las pruebas unitarias siempre usan localStorage.
+(`VITE_API_URL=/api`); Vite reenvía `/api` al backend. En este modo el inicio de sesión es
+real: las cuentas demo usan la contraseña `demo1234` y el panel solo carga los datos que el
+perfil puede ver. Si el backend no responde, la tienda sigue funcionando con localStorage y
+la sesión simulada. Las pruebas unitarias de las pantallas usan localStorage; `db-api.spec.js`
+y `auth-api.spec.jsx` cubren el modo API con un servidor simulado.
 
 ```bash
 npm run setup    # solo la primera vez: instala las tres carpetas

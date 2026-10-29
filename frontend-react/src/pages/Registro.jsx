@@ -5,6 +5,7 @@ import CampoFormulario from '../components/CampoFormulario';
 import MensajeError from '../components/MensajeError';
 import SelectorRegionComuna from '../components/SelectorRegionComuna';
 import { registrarUsuario } from '../data/db';
+import { alResolver } from '../utils/asincrono';
 import {
     encadenar, validarCampos, validarCorreo, validarMaximo, validarRango, validarRequerido, validarRun
 } from '../utils/validaciones';
@@ -50,7 +51,7 @@ export default function Registro() {
         setErrores(nuevos);
         if (Object.keys(nuevos).length > 0) return;
 
-        const resultado = registrarUsuario({
+        const respuesta = registrarUsuario({
             run: datos.run.trim().toUpperCase(),
             nombre: datos.nombre.trim(),
             apellidos: datos.apellidos.trim(),
@@ -61,17 +62,19 @@ export default function Registro() {
             direccion: datos.direccion.trim(),
             telefono: datos.telefono,
             fechaNacimiento: ''
+        }, datos.password);
+
+        alResolver(respuesta, resultado => {
+            if (!resultado.exito) {
+                setErrorGeneral(resultado.mensaje);
+                if (resultado.campo) setErrores({ ...errores, [resultado.campo]: resultado.mensaje });
+                return;
+            }
+
+            setErrorGeneral('');
+            setExito(resultado.mensaje);
+            setTimeout(() => navegar('/login'), 1500);
         });
-
-        if (!resultado.exito) {
-            setErrorGeneral(resultado.mensaje);
-            if (resultado.campo) setErrores({ ...errores, [resultado.campo]: resultado.mensaje });
-            return;
-        }
-
-        setErrorGeneral('');
-        setExito(resultado.mensaje);
-        setTimeout(() => navegar('/login'), 1500);
     };
 
     const campo = (id, etiqueta, extra = {}) => (

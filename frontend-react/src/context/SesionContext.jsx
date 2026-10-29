@@ -1,7 +1,9 @@
-import { createContext, useContext, useState } from 'react';
-import { buscarUsuarioPorCorreo } from '../data/db';
+import { createContext, useContext, useEffect, useState } from 'react';
+import {
+    buscarUsuarioPorCorreo, cerrarSesionApi, iniciarSesionApi, suscribirExpiracion, usandoApi
+} from '../data/db';
 
-const CLAVE_SESION = 'chstore_sesion';
+export const CLAVE_SESION = 'chstore_sesion';
 const PERFILES_PANEL = ['Administrador', 'Vendedor'];
 
 const SesionContext = createContext(null);
@@ -22,12 +24,15 @@ export function puedeEntrarAlPanel(sesion) {
 export function SesionProvider({ children }) {
     const [sesion, setSesion] = useState(leerSesion);
 
-    /** La sesión es simulada: se identifica al usuario por su correo. */
-    const iniciarSesion = correo => {
-        const usuario = buscarUsuarioPorCorreo(correo);
-        if (!usuario) return { exito: false, mensaje: 'No existe una cuenta con ese correo.' };
+    // Si el servidor da por vencida la sesión, se cierra también en pantalla
+    useEffect(() => suscribirExpiracion(() => {
+        localStorage.removeItem(CLAVE_SESION);
+        setSesion(null);
+    }), []);
 
+    const abrir = usuario => {
         const nueva = {
+            run: usuario.run,
             nombre: usuario.nombre,
             apellidos: usuario.apellidos,
             correo: usuario.correo,
@@ -38,7 +43,23 @@ export function SesionProvider({ children }) {
         return { exito: true, sesion: nueva };
     };
 
+    /**
+     * Con el backend valida correo y contraseña en el servidor (devuelve una promesa).
+     * Sin backend la sesión es simulada: se identifica al usuario por su correo.
+     */
+    const iniciarSesion = (correo, password) => {
+        if (usandoApi()) {
+            return iniciarSesionApi(correo, password).then(
+                resultado => (resultado.exito ? abrir(resultado.usuario) : resultado)
+            );
+        }
+        const usuario = buscarUsuarioPorCorreo(correo);
+        if (!usuario) return { exito: false, mensaje: 'No existe una cuenta con ese correo.' };
+        return abrir(usuario);
+    };
+
     const cerrarSesion = () => {
+        if (usandoApi()) cerrarSesionApi();
         localStorage.removeItem(CLAVE_SESION);
         setSesion(null);
     };

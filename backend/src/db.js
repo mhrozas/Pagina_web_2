@@ -9,7 +9,11 @@ import { DatabaseSync } from 'node:sqlite';
 import { mkdirSync, readFileSync } from 'node:fs';
 import { dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { crear, transaccion } from './repositorio.js';
+import { crear, fijarPassword, transaccion } from './repositorio.js';
+import { hashPassword } from './seguridad.js';
+
+/* Contraseña de las tres cuentas demo; se puede cambiar con la variable DEMO_PASSWORD */
+const PASSWORD_DEMO = process.env.DEMO_PASSWORD || 'demo1234';
 
 const RUTA_SEMILLA = fileURLToPath(new URL('../seed/datos.json', import.meta.url));
 
@@ -43,7 +47,8 @@ CREATE TABLE IF NOT EXISTS usuarios (
     comuna           TEXT,
     direccion        TEXT,
     telefono         TEXT,
-    fecha_nacimiento TEXT
+    fecha_nacimiento TEXT,
+    password_hash    TEXT
 );
 
 CREATE TABLE IF NOT EXISTS ordenes (
@@ -61,6 +66,12 @@ CREATE TABLE IF NOT EXISTS ordenes (
     posicion      INTEGER NOT NULL DEFAULT 0
 );
 
+CREATE TABLE IF NOT EXISTS sesiones (
+    token_hash TEXT PRIMARY KEY,
+    run        TEXT NOT NULL REFERENCES usuarios(run) ON UPDATE CASCADE ON DELETE CASCADE,
+    expira     INTEGER NOT NULL
+);
+
 CREATE INDEX IF NOT EXISTS idx_ordenes_correo ON ordenes(correo);
 CREATE INDEX IF NOT EXISTS idx_productos_categoria ON productos(categoria);
 `;
@@ -73,17 +84,29 @@ export function abrirBaseDeDatos(ruta) {
     db.exec('PRAGMA foreign_keys = ON');
     if (ruta !== ':memory:') db.exec('PRAGMA journal_mode = WAL');
     db.exec(ESQUEMA);
+    agregarColumnaSiFalta(db, 'usuarios', 'password_hash', 'TEXT');
 
     if (db.prepare('SELECT COUNT(*) AS n FROM categorias').get().n === 0) sembrar(db);
     return db;
 }
 
+/** Permite abrir una base creada antes de que existiera la autenticación. */
+function agregarColumnaSiFalta(db, tabla, columna, tipo) {
+    const existe = db.prepare(`PRAGMA table_info(${tabla})`).all().some(c => c.name === columna);
+    if (!existe) db.exec(`ALTER TABLE ${tabla} ADD COLUMN ${columna} ${tipo}`);
+}
+
 /** Inserta los datos iniciales (catálogo, usuarios demo y órdenes de ejemplo). */
 export function sembrar(db) {
     const datos = JSON.parse(readFileSync(RUTA_SEMILLA, 'utf8'));
+    const hashDemo = hashPassword(PASSWORD_DEMO);
     transaccion(db, () => {
-        ['categorias', 'productos', 'usuarios'].forEach(coleccion => {
+        ['categorias', 'productos'].forEach(coleccion => {
             datos[coleccion].forEach(registro => crear(db, coleccion, registro));
+        });
+        datos.usuarios.forEach(usuario => {
+            crear(db, 'usuarios', usuario);
+            fijarPassword(db, usuario.run, hashDemo);
         });
         // Las órdenes se insertan al revés: cada nueva queda al principio del listado
         [...datos.ordenes].reverse().forEach(orden => crear(db, 'ordenes', orden));
@@ -93,7 +116,7 @@ export function sembrar(db) {
 /** Borra todos los datos y vuelve a cargar los iniciales. */
 export function reiniciar(db) {
     transaccion(db, () => {
-        ['ordenes', 'productos', 'usuarios', 'categorias'].forEach(tabla => db.exec(`DELETE FROM ${tabla}`));
+        ['sesiones', 'ordenes', 'productos', 'usuarios', 'categorias'].forEach(tabla => db.exec(`DELETE FROM ${tabla}`));
     });
     sembrar(db);
 }

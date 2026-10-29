@@ -4,9 +4,9 @@ import Boton from '../../components/Boton';
 import CampoFormulario from '../../components/CampoFormulario';
 import MensajeError from '../../components/MensajeError';
 import SelectorRegionComuna from '../../components/SelectorRegionComuna';
-import { actualizar, buscarUsuarioPorCorreo, crear, obtener } from '../../data/db';
+import { actualizar, buscarUsuarioPorCorreo, crear, obtener, usandoApi } from '../../data/db';
 import { REGLAS_USUARIO } from '../../utils/admin';
-import { validarCampos } from '../../utils/validaciones';
+import { validarCampos, validarRango, validarRequerido } from '../../utils/validaciones';
 
 const VACIO = { run: '', nombre: '', apellidos: '', correo: '', tipoUsuario: '', region: '', comuna: '', direccion: '', fechaNacimiento: '' };
 
@@ -16,6 +16,7 @@ export default function UsuarioForm() {
     const existente = run ? obtener('usuarios', run) : null;
 
     const [datos, setDatos] = useState(existente ? { ...VACIO, ...existente } : VACIO);
+    const [password, setPassword] = useState('');
     const [errores, setErrores] = useState({});
     const [errorGeneral, setErrorGeneral] = useState('');
 
@@ -30,6 +31,11 @@ export default function UsuarioForm() {
     const enviar = evento => {
         evento.preventDefault();
         const nuevos = validarCampos(datos, REGLAS_USUARIO);
+        // Con backend, el usuario nuevo necesita contraseña; al editar es opcional (la restablece)
+        if (usandoApi() && (!existente || password)) {
+            const errorClave = (!existente && validarRequerido(password, 'contraseña')) || validarRango(password, 4, 10, 'contraseña');
+            if (errorClave) nuevos.password = errorClave;
+        }
         setErrores(nuevos);
         if (Object.keys(nuevos).length > 0) return;
 
@@ -40,7 +46,9 @@ export default function UsuarioForm() {
         }
 
         const usuario = { ...datos, run: datos.run.trim().toUpperCase(), nombre: datos.nombre.trim(), apellidos: datos.apellidos.trim(), correo: datos.correo.trim() };
-        const resultado = existente ? actualizar('usuarios', run, usuario) : crear('usuarios', usuario);
+        const resultado = existente
+            ? actualizar('usuarios', run, usuario, password ? { password } : undefined)
+            : crear('usuarios', usuario, usandoApi() ? { password } : undefined);
         if (!resultado.exito) return setErrorGeneral(resultado.mensaje);
         navegar('/admin/usuarios');
     };
@@ -71,6 +79,13 @@ export default function UsuarioForm() {
                 </div>
                 <SelectorRegionComuna region={datos.region} comuna={datos.comuna} onChange={cambiar} errores={errores} />
                 {campo('direccion', 'Dirección', { obligatorio: true, maxLength: 300 })}
+                {usandoApi() && (
+                    <CampoFormulario
+                        id="password" etiqueta={existente ? 'Nueva contraseña' : 'Contraseña'} tipo="password"
+                        obligatorio={!existente} maxLength={10} valor={password} onChange={e => setPassword(e.target.value)}
+                        error={errores.password} ayuda={existente ? 'Déjala vacía para no cambiarla.' : 'Entre 4 y 10 caracteres.'}
+                    />
+                )}
                 <div className="d-flex gap-2">
                     <Boton tipo="submit" variante="primary" etiqueta="Guardar" />
                     <Link to="/admin/usuarios" className="btn btn-outline-secondary">Cancelar</Link>
