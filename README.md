@@ -13,7 +13,7 @@ panel de administración.
 | Integrante | Responsabilidad |
 |---|---|
 | Javiera Rojas | Catálogo y carrito en JavaScript, validaciones, módulo administrador, documentación ERS |
-| M. Rozas | Diseño visual, estructura HTML, hoja de estilos, portada con video, logo, carrito con cupones y código de envío |
+| Mhyjal Rozas | Diseño visual, estructura HTML, hoja de estilos, portada con video, logo, carrito con cupones y código de envío |
 
 ---
 

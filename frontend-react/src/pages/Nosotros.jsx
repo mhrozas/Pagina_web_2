@@ -3,7 +3,7 @@ import useColeccion from '../hooks/useColeccion';
 
 const EQUIPO = [
     { siglas: 'JR', nombre: 'Javiera Rojas', rol: 'Frontend / Validaciones JS', detalle: 'Responsable del catálogo y el carrito, las validaciones de formularios, el módulo administrador, las pruebas y la documentación ERS.' },
-    { siglas: 'MH', nombre: 'M. Rozas', rol: 'Frontend / Maquetación', detalle: 'Responsable del diseño visual, la estructura de la interfaz, la portada con video y el carrito con cupones y código de envío.' }
+    { siglas: 'MH', nombre: 'Mhyjal Rozas', rol: 'Frontend / Maquetación', detalle: 'Responsable del diseño visual, la estructura de la interfaz, la portada con video y el carrito con cupones y código de envío.' }
 ];
 
 export default function Nosotros() {

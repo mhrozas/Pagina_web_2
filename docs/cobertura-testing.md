@@ -4,7 +4,7 @@
 **Asignatura:** DSY1104 — Desarrollo Full Stack II
 **Evaluación:** Parcial 2 (30%)
 **Fecha:** 28 de octubre de 2026
-**Autores:** Javiera Rojas, M. Rozas
+**Autores:** Javiera Rojas, Mhyjal Rozas
 
 ---
 

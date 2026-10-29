@@ -11,8 +11,8 @@
 | Fecha | Revisión | Autor | Modificación |
 |---|---|---|---|
 | 30-09-2026 | 1.0 | Javiera Rojas | Versión inicial del documento. Secciones 1, 2 y 3 desarrolladas para la entrega 1. |
-| 19-10-2026 | 1.1 | Javiera Rojas, M. Rozas | Integración del diseño visual de la tienda con la lógica JavaScript. Inicio de sesión con perfil, catálogo único para tienda y panel, y registro de órdenes. |
-| 28-10-2026 | 2.0 | Javiera Rojas, M. Rozas | Migración del frontend a React con Bootstrap. Nuevas vistas de la tienda (categorías, ofertas, checkout, pago exitoso y pago con error) y del panel (órdenes y boleta, productos críticos, categorías, historial de compras, reportes y perfil). Fuente de datos simulada con CRUD y persistencia. Estrategia de pruebas con Jasmine y Karma (sección 3.5). Se reescriben las restricciones y los requisitos no funcionales afectados. |
+| 19-10-2026 | 1.1 | Javiera Rojas, Mhyjal Rozas | Integración del diseño visual de la tienda con la lógica JavaScript. Inicio de sesión con perfil, catálogo único para tienda y panel, y registro de órdenes. |
+| 28-10-2026 | 2.0 | Javiera Rojas, Mhyjal Rozas | Migración del frontend a React con Bootstrap. Nuevas vistas de la tienda (categorías, ofertas, checkout, pago exitoso y pago con error) y del panel (órdenes y boleta, productos críticos, categorías, historial de compras, reportes y perfil). Fuente de datos simulada con CRUD y persistencia. Estrategia de pruebas con Jasmine y Karma (sección 3.5). Se reescriben las restricciones y los requisitos no funcionales afectados. |
 
 > **Alcance de esta versión:** el documento queda terminado para la entrega 2, que se
 > centra en el frontend. Las interfaces de software y de comunicación con un backend

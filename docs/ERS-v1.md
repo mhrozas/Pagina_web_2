@@ -11,7 +11,7 @@
 | Fecha | Revisión | Autor | Modificación |
 |---|---|---|---|
 | 30-09-2026 | 1.0 | Javiera Rojas | Versión inicial del documento. Secciones 1, 2 y 3 desarrolladas para la entrega 1. |
-| 19-10-2026 | 1.1 | Javiera Rojas, M. Rozas | Integración del diseño visual de la tienda (logo, video de portada, tallas, cupones y código de envío) con la lógica JavaScript. Color de acento, tipografía de títulos y animaciones (3.1.1). Inicio de sesión con perfil, catálogo único para tienda y panel, y registro de órdenes. Actualización de RF-03, RF-07, RF-09, RF-11, RF-15 e incorporación de RF-16. |
+| 19-10-2026 | 1.1 | Javiera Rojas, Mhyjal Rozas | Integración del diseño visual de la tienda (logo, video de portada, tallas, cupones y código de envío) con la lógica JavaScript. Color de acento, tipografía de títulos y animaciones (3.1.1). Inicio de sesión con perfil, catálogo único para tienda y panel, y registro de órdenes. Actualización de RF-03, RF-07, RF-09, RF-11, RF-15 e incorporación de RF-16. |
 
 > **Nota sobre el alcance de esta versión:** conforme a las instrucciones de la evaluación,
 > este documento se trabaja durante el semestre y se entrega parcialmente terminado. Las
