@@ -1,0 +1,25 @@
+body { background: #f8f9fa; color: #333; }
+
+.product-img { aspect-ratio: 3 / 4; object-fit: cover; }
+.product-card { transition: transform .15s ease; }
+.product-card:hover { transform: translateY(-3px); }
+.miniatura { width: 72px; height: 72px; object-fit: cover; cursor: pointer; }
+.blog-img { aspect-ratio: 16 / 9; object-fit: cover; }
+.avatar-equipo {
+    width: 56px; height: 56px; border-radius: 50%; background: #212529; color: #fff;
+    display: flex; align-items: center; justify-content: center; font-weight: 600;
+}
+
+/* Portada con video */
+.hero { min-height: 340px; }
+.hero-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.hero-overlay { position: relative; min-height: 340px; background: rgba(0, 0, 0, .45); }
+
+/* Panel de administración */
+.admin-app { min-height: 100vh; }
+.admin-app .nav-pills .nav-link { color: #333; }
+.admin-app .nav-pills .nav-link.active { color: #fff; }
+
+@media print {
+    header, footer, aside, .navbar, .btn { display: none !important; }
+}
