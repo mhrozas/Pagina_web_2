@@ -1,8 +1,14 @@
 /* ============================================================
    BASE DE DATOS SIMULADA
-   Fuente de datos en JavaScript con persistencia en localStorage.
    Cada colección expone las cuatro operaciones CRUD y los
    componentes de React las consumen a través de estas funciones.
+
+   Tiene dos modos de persistencia con la misma interfaz:
+   - API (conectarApi): los datos viven en la base del backend. Se
+     cargan una vez en una caché en memoria, las lecturas son
+     síncronas y cada escritura se envía al servidor.
+   - localStorage (por defecto): se usa si no hay backend disponible
+     y en las pruebas unitarias.
 
    Colecciones: productos, categorias, usuarios, ordenes.
    ============================================================ */
@@ -65,10 +71,70 @@ function notificar() {
 
 
 /* ------------------------------------------------------------
+   0. MODO API (backend con base de datos)
+   ------------------------------------------------------------ */
+
+let urlApi = null;
+const cache = {};
+
+export function usandoApi() {
+    return urlApi !== null;
+}
+
+async function pedir(metodo, ruta, cuerpo) {
+    const respuesta = await fetch(urlApi + ruta, {
+        method: metodo,
+        headers: cuerpo !== undefined ? { 'Content-Type': 'application/json' } : undefined,
+        body: cuerpo !== undefined ? JSON.stringify(cuerpo) : undefined
+    });
+    if (!respuesta.ok) throw new Error(`${metodo} ${ruta} respondió ${respuesta.status}`);
+    return respuesta.status === 204 ? null : respuesta.json();
+}
+
+async function cargarColeccion(coleccion) {
+    cache[coleccion] = await pedir('GET', '/' + coleccion);
+}
+
+/**
+ * Conecta la base con el backend: descarga las colecciones y, desde ese
+ * momento, las lecturas salen de la caché y las escrituras van al servidor.
+ * Si el servidor no responde lanza un error y se sigue en localStorage.
+ */
+export async function conectarApi(url) {
+    urlApi = url.replace(/\/$/, '');
+    try {
+        await Promise.all(Object.keys(CLAVES).map(cargarColeccion));
+    } catch (error) {
+        urlApi = null;
+        throw error;
+    }
+    notificar();
+}
+
+/** Desactiva el modo API y vuelve a localStorage (útil en pruebas). */
+export function desconectarApi() {
+    urlApi = null;
+    Object.keys(cache).forEach(coleccion => delete cache[coleccion]);
+}
+
+/**
+ * Envía un cambio al servidor. Si falla, vuelve a leer la colección para
+ * que la pantalla no muestre algo que no quedó guardado.
+ */
+function sincronizar(coleccion, metodo, ruta, cuerpo) {
+    pedir(metodo, ruta, cuerpo).catch(error => {
+        console.error('No se pudo guardar en el servidor:', error);
+        cargarColeccion(coleccion).then(notificar).catch(() => {});
+    });
+}
+
+
+/* ------------------------------------------------------------
    1. LECTURA Y ESCRITURA EN LOCALSTORAGE
    ------------------------------------------------------------ */
 
 function leer(coleccion) {
+    if (usandoApi()) return cache[coleccion];
     try {
         const guardado = localStorage.getItem(CLAVES[coleccion]);
         const datos = guardado ? JSON.parse(guardado) : null;
@@ -80,10 +146,14 @@ function leer(coleccion) {
 }
 
 function escribir(coleccion, datos) {
-    try {
-        localStorage.setItem(CLAVES[coleccion], JSON.stringify(datos));
-    } catch (error) {
-        console.error('No se pudo guardar ' + coleccion + ':', error);
+    if (usandoApi()) {
+        cache[coleccion] = datos;
+    } else {
+        try {
+            localStorage.setItem(CLAVES[coleccion], JSON.stringify(datos));
+        } catch (error) {
+            console.error('No se pudo guardar ' + coleccion + ':', error);
+        }
     }
     notificar();
 }
@@ -116,6 +186,7 @@ export function crear(coleccion, registro) {
     }
 
     escribir(coleccion, [...datos, registro]);
+    if (usandoApi()) sincronizar(coleccion, 'POST', '/' + coleccion, registro);
     return { exito: true, mensaje: 'Registro creado correctamente.' };
 }
 
@@ -134,6 +205,7 @@ export function actualizar(coleccion, id, cambios) {
     escribir(coleccion, datos.map(registro => (
         registro[campoId] === id ? { ...registro, ...cambios } : registro
     )));
+    if (usandoApi()) sincronizar(coleccion, 'PUT', `/${coleccion}/${encodeURIComponent(id)}`, cambios);
     return { exito: true, mensaje: 'Registro actualizado correctamente.' };
 }
 
@@ -150,11 +222,19 @@ export function eliminar(coleccion, id) {
     }
 
     escribir(coleccion, datos.filter(registro => registro[campoId] !== id));
+    if (usandoApi()) sincronizar(coleccion, 'DELETE', `/${coleccion}/${encodeURIComponent(id)}`);
     return { exito: true, mensaje: 'Registro eliminado correctamente.' };
 }
 
 /** Restaura una colección a sus datos iniciales (útil para pruebas y demo). */
 export function reiniciar(coleccion) {
+    if (usandoApi()) {
+        pedir('POST', '/reiniciar')
+            .then(() => Promise.all(Object.keys(CLAVES).map(cargarColeccion)))
+            .then(notificar)
+            .catch(error => console.error('No se pudo reiniciar la base:', error));
+        return;
+    }
     if (coleccion) {
         localStorage.removeItem(CLAVES[coleccion]);
     } else {
@@ -209,6 +289,7 @@ export function listarOrdenesDeUsuario(correo) {
 /** Registra una orden nueva al principio del listado. */
 export function registrarOrden(orden) {
     escribir('ordenes', [orden, ...leer('ordenes')]);
+    if (usandoApi()) sincronizar('ordenes', 'POST', '/ordenes', orden);
 }
 
 /** Descuenta del catálogo las unidades vendidas. */
@@ -220,4 +301,9 @@ export function descontarStock(items) {
         return vendidas ? { ...producto, stock: Math.max(producto.stock - vendidas, 0) } : producto;
     });
     escribir('productos', productos);
+    if (usandoApi()) {
+        sincronizar('productos', 'POST', '/productos/descontar-stock', {
+            items: items.map(({ codigo, cantidad }) => ({ codigo, cantidad }))
+        });
+    }
 }

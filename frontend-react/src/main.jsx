@@ -8,15 +8,33 @@ import './index.css';
 import App from './App.jsx';
 import { SesionProvider } from './context/SesionContext.jsx';
 import { CarritoProvider } from './context/CarritoContext.jsx';
+import { conectarApi } from './data/db';
 
-createRoot(document.getElementById('root')).render(
-    <StrictMode>
-        <BrowserRouter>
-            <SesionProvider>
-                <CarritoProvider>
-                    <App />
-                </CarritoProvider>
-            </SesionProvider>
-        </BrowserRouter>
-    </StrictMode>
-);
+/* Con backend los datos se cargan antes de mostrar la tienda; si no responde, se usa localStorage */
+async function iniciar() {
+    const url = import.meta.env.VITE_API_URL;
+    if (url) {
+        try {
+            await conectarApi(url);
+        } catch (error) {
+            console.warn('Backend no disponible, se usan los datos locales:', error.message);
+        }
+    }
+    montar();
+}
+
+function montar() {
+    createRoot(document.getElementById('root')).render(
+        <StrictMode>
+            <BrowserRouter>
+                <SesionProvider>
+                    <CarritoProvider>
+                        <App />
+                    </CarritoProvider>
+                </SesionProvider>
+            </BrowserRouter>
+        </StrictMode>
+    );
+}
+
+iniciar();

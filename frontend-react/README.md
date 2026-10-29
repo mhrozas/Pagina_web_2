@@ -25,6 +25,18 @@ Cupones disponibles: `DESCUENTO20`, `CHSTORE10`, `BIENVENIDA10`, `VERANO20`, `DU
 En el checkout, el resultado del pago se elige en pantalla (aprobado o rechazado) para
 poder probar ambos caminos.
 
+### Con backend y base de datos
+
+Desde la raíz del repositorio, un solo comando levanta la API (puerto 3001) y el frontend
+(puerto 5173). La base de datos se crea sola. El archivo `.env` activa el modo API
+(`VITE_API_URL=/api`); Vite reenvía `/api` al backend. Si el backend no responde, la
+tienda sigue funcionando con localStorage. Las pruebas unitarias siempre usan localStorage.
+
+```bash
+npm run setup    # solo la primera vez: instala las tres carpetas
+npm run dev
+```
+
 ## Pruebas unitarias (Jasmine + Karma)
 
 ```bash

@@ -17,6 +17,10 @@ panel de administración.
 
 ---
 
+> **Entrega 3 (rama `entrega-3-backend`):** el frontend React se conecta a un backend propio
+> (Node + Express) con base de datos SQLite. Todo se levanta con un solo comando; ver
+> [`backend/README.md`](backend/README.md).
+>
 > **Entrega 2:** la versión en React con Bootstrap, el panel ampliado y las pruebas con
 > Jasmine y Karma están en [`frontend-react/`](frontend-react/README.md) (rama
 > `entrega-2-react`). Los documentos actualizados son `docs/ERS-v2.md` y
